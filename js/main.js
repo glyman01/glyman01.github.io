@@ -1,6 +1,6 @@
 // DOM
 $(document).on('ready', function(){
-
+    console.log('js running?');
 
 	// Setting a cookie for the intro loader
 	
