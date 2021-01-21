@@ -9,7 +9,7 @@ $(document).on('ready', function(){
 		// if the cookie 'loaded' does not exist, do this -
 		
 		if (!Cookies.get('loaded')){
-			Cookies.set('loaded', 'true', {expires: ''});
+			Cookies.set('loaded', 'true', {expires: 1});
 		
 		// Faking the animation intro
 		    // var introAnimate = setTimeout(function(){
