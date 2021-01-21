@@ -1,6 +1,6 @@
 // DOM
 $(document).on('ready', function(){
-    console.log('js running?');
+    //console.log('js running?');
 
 	// Setting a cookie for the intro loader
 	
@@ -12,28 +12,46 @@ $(document).on('ready', function(){
 			Cookies.set('loaded', 'true', {expires: ''});
 		
 		// Faking the animation intro
-		    var introAnimate = setTimeout(function(){
+		    // var introAnimate = setTimeout(function(){
 
-		        $('body').addClass('loaded');
+		    //     $('body').addClass('loaded');
 
-		        if ($('body').hasClass('loaded')){
-		        	$('.wrapper').delay(0).queue(function(next){
-		        		$(this).removeClass('hidden-main-content');
-		        		next();
-		        	});
-		    	}
+		    //     if ($('body').hasClass('loaded')){
+		    //     	$('.wrapper').delay(0).queue(function(next){
+		    //     		$(this).removeClass('hidden-main-content');
+		    //     		next();
+		    //     	});
+		    // 	}
 		    
-		    }, 2800);
+		    // }, 0);
+
+			let stateCheck = setInterval(() => {
+				if (document.readyState === 'complete') {
+					clearInterval(stateCheck);
+					// Faking the animation intro
+					var introAnimate = setTimeout(function(){
+
+					    $('body').addClass('loaded');
+
+					    if ($('body').hasClass('loaded')){
+					    	$('.wrapper').delay(0).queue(function(next){
+					    		$(this).removeClass('hidden-main-content');
+					    		next();
+					    	});
+						}
+
+					}, 0);
+					// document ready
+				}
+			}, 100);
 
 
 		// otherwise, if the cookie exists do this -
 		
 		} else {
-			
 			$('body').addClass('loaded');
-
-		       $('.wrapper').removeClass('hidden-main-content');
-		       $('#loader-wrapper').hide();
+	    	$('.wrapper').removeClass('hidden-main-content');
+	    	$('#loader-wrapper').hide();
 		}	
 	};
 
