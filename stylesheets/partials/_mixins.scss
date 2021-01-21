@@ -1,0 +1,49 @@
+@each $li in disc, circle, decimal {
+	.li-#{$li} {
+	list-style-type: $li;
+	}
+}
+
+
+@mixin breakpoint($size) {
+	@if $size == mini {
+		@media all and (min-width: 380px) {
+		@content;
+		}
+	}
+
+	@else if $size == small {
+		@media all and (min-width: 480px) {
+		@content;
+		}
+	}
+
+	@else if $size == med {
+		@media all and (min-width: 768px) {
+		@content;
+		}
+	}
+
+	@else if $size == large {
+		@media all and (min-width: 1200px) {
+		@content;
+		}
+	}
+}
+
+@each $percent in 50, 57, 60, 75, 76, 80, 82, 85, 93, 95, 97, 99, 101 {
+	@keyframes statsSlide#{$percent} {
+		from {
+			width: 0;
+			opacity: 0;
+			-webkit-transform: translate3d(0%, 0, 0);
+			transform: translate3d(0%, 0, 0);
+}
+		to {
+			opacity: 1;
+			-webkit-transform: translate3d(0%, 0, 0);
+			transform: translate3d(0%, 0, 0);
+			width: $percent * 1%
+		}
+	}
+}

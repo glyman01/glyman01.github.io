@@ -1,0 +1,55 @@
+.block-hero {
+	color: white;
+	width: 100%;
+	height: 100%;
+	padding: 20px 0px;
+}
+
+.block-hero-purple {
+	@extend .block-hero;
+	background-color: $drk-purple;
+	padding: 120px 0 50px 0;
+	height: auto;
+
+	@include breakpoint(mini){
+		padding: 150px 0 50px 0;
+		height: 100%;
+	}
+
+	@include breakpoint(small){
+		padding: 200px 0 20px 0;
+		height: auto;
+	}
+}
+
+.block-hero-green {
+	@extend .block-hero-purple;
+	background-color: $sweet-green;
+}
+
+.block-hero-drk-gry {
+	@extend .block-hero;
+	background-color: $drk-gry;
+}
+
+%block-hero-nasa {
+	height: 350px;
+	max-height: 350px;
+	min-height: 350px;
+	width: 100%;
+	padding: 0;
+
+	@include breakpoint(small){
+		height: 500px;
+		max-height: 500px;
+		min-height: 500px;
+	}
+}
+
+.block-nasa {
+	@extend %block-hero-nasa;
+	background-size: cover !important;
+	background-color: rgba($drk-purple, 0.85) !important;
+	background-blend-mode: multiply !important;
+	text-align: center;
+}

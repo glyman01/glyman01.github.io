@@ -1,0 +1,120 @@
+.nav-wrapper {
+	position: absolute;
+/*	overflow: auto;
+*/	width: 100%;
+	top: 0;
+	z-index: 2;
+	color: white;
+	margin: 10px auto 40px;
+	text-align: center;
+
+
+	.nav-main {
+		margin: 0px auto;
+		padding: 0;
+/*		overflow: auto;
+*/		display: inline-block;
+
+	
+		li {
+			display: block;
+			float: left;
+
+			&.top-nav {
+				margin-top: 15px;
+			}
+		}
+
+		.planet-nav {
+			    position: fixed;
+			    z-index: 2;
+			    background-color: rgba(0, 0, 0, 0.6);
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    -webkit-transition: background-color .5s ease-in-out;
+			    -moz-transition: background-color .5s ease-in-out;
+			    transition: background-color .5s ease-in-out;
+			}
+
+	   	svg {
+	    	max-width: 90px;
+
+	    	@include breakpoint(small) {
+	    		max-width: 110px;
+	    	}
+
+	    	@include breakpoint(med) {
+	    		max-width: 120px;
+	    	}
+	    }
+
+		a {
+			display: block;
+			padding: 12px;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 22px;
+			color: white;
+
+			@include breakpoint(mini) {
+				padding: 20px;
+				font-size: 30px;
+			}
+
+			&:focus {
+				outline: none;
+    			outline-offset: 0;
+			}
+
+			&:hover, 
+			&.is-current {
+			}
+		}
+
+	}
+}
+
+.sliding-middle-out {
+	display: inline-block;
+	position: relative;
+	margin-top: 10px;
+
+	&:after {
+		content: '';
+		display: block;
+		margin: 8px auto 0;
+		height: 3px;
+		width: 0px;
+		background: transparent;
+		transition: width .24s ease-in-out, background-color .24s ease-in-out;
+	}
+	&:hover:after,
+	&:focus:after {
+		width: 100%;
+		background: white;
+		margin-top: 8px;
+		outline: none;
+		outline: -webkit-focus-ring-color transparent;
+	}
+
+	&.is-current:after {
+		background: $sweet-green;
+	}
+}
+
+.desktop-nav {
+	display: none;
+
+	@include breakpoint(med) {
+		display: block;
+	}
+}
+
+.mobile-nav {
+	display: block;
+	
+	@include breakpoint(med) {
+		display: none;
+	}
+}

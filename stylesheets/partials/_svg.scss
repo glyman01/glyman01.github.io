@@ -1,0 +1,155 @@
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: $lte-gry;
+
+  span:nth-of-type(1) {
+    z-index: -9;
+  }
+
+  #loader {
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    max-width: 200px;
+    width: 100%;
+    left: 50%;
+
+    @include breakpoint(small){
+      max-width: 260px;
+    }
+  }
+
+}
+
+/* Loaded */
+.loaded {
+
+  #loader {
+    opacity: 0;
+    -ms-transition: all 0.3s ease-out;  
+    -moz-transition: all 0.3s ease-out;  
+    -webkit-transition: all 0.3s ease-out;  
+            transition: all 0.3s ease-out;
+  }
+
+  #loader-wrapper {
+    @include animation(loadedFade .5s 300ms ease-in-out forwards);
+
+  }
+  
+}
+
+
+#Planet {
+	max-width: 280px;
+	width: 100%;
+	height: auto;
+    margin: 0px auto;
+    display: block;
+}
+
+.planet {
+    @include animation(floatingPlanet 2.8s infinite ease-in-out);
+}
+
+#Planet-White {
+	width: 100%;
+	height: auto;
+  margin: 0px auto;
+  display: block;
+}
+
+#wavyLoader {
+	@extend #Planet;
+	max-width: 240px;
+	margin: 0px auto;
+}
+
+.planet-inner-circle {
+	fill: rgba(white, 0.2);
+}
+
+.planet-outer-circle {
+	position: absolute;
+	top: 0px;
+	width: 0px;
+	height: 0px;
+	fill: $drk-gry;
+	@include animation(ringSpin 5s infinite ease-in-out);
+}
+
+.planet-ring {
+	fill: $drk-gry;
+	@include animation(outerRingSpin 7s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55));
+}
+
+.wave {
+	stroke-dasharray: 220;
+	stroke-dashoffset: 220;
+	@include animation(wavyFill 1.7s linear infinite);
+}
+
+.planet-inner-circle-nav {
+	fill: rgba(black, 0.2);
+}
+
+.load-svg-wrapper {
+    position: relative;
+    top: 45%;
+    transform: translateY(-45%);
+}
+
+.planet-shadow {
+  
+  li, span {
+    border-radius: 75px;
+    width: 90px;
+    margin: 0px auto;
+    @include animation(shadowGrow 2.8s ease-in-out infinite);
+  }
+
+  span {
+    display: block;
+    left: 0;
+    position: relative;
+    top: 0;
+  }
+  
+  span:nth-of-type(1){
+    left: -7px;
+    top: -10px;
+    background: rgba(20, 20, 20, 0.03);
+    box-shadow: 0px 0 30px 28px rgba(20, 20, 20, 0.03);
+    transform: scaleY(.3);
+    -webkit-transform: scaleY(.3);
+    height: 100px;
+  }
+}
+
+li.planet-shadow {
+    margin: 10px auto 20px;
+}
+
+#page-nav {
+  position: absolute;
+  max-width: 30px;
+  bottom: 4%;
+  left: 48%;
+}
+
+.stop-svg-animate {
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+}
+
+.start-svg-animate {
+  @include animation(navBounce 1.1s ease-in-out infinite);
+}

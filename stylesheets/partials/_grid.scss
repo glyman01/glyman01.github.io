@@ -1,0 +1,37 @@
+@for $i from 1 through 25 {
+	.col-#{$i} {
+	width: 4% * $i;
+	}
+}
+
+#container {
+	max-width: 960px;
+	width: 100%;
+	margin: 0px auto;
+}
+
+.block-center {
+  width: 100%;
+  display: block;
+  margin: 0 auto 0;
+  text-align: center;
+}
+
+.block-center-spaced {
+	@extend .block-center;
+	margin: 40px auto 30px;
+
+	@include breakpoint(small){
+		margin: 20px auto 60px;
+	}
+	
+	@include breakpoint(large){
+		margin: 20px auto 60px;
+	}
+}
+
+.overflow {
+	@extend .block-center;
+	overflow: auto;
+}
+

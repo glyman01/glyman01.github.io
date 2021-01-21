@@ -1,0 +1,50 @@
+%btn-styled {
+	padding: .5rem 2rem;
+	font-family: $arvo;
+	font-weight: 400;
+	color: $lte-gry;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 120px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.section-btn {
+	@extend %btn-styled;
+	background-color: rgba($lte-purple, 0.4);
+	font-size: 18px;
+	color: rgba($lte-gry, 0.8);
+
+	&:hover{
+		background-color: rgba($lte-purple, 0.7);
+		color: $lte-gry;
+	}
+
+	&:focus{
+		@extend .section-btn:hover;
+		color: $lte-gry;
+		outline: dotted rgba($sweet-red, 0.8);
+    	outline-offset: 14px;
+	}
+}
+
+.section-btn-green {
+	@extend .section-btn;
+	background-color: rgba($mint, 0.4);
+	margin-top: 32px;
+
+	&:hover{
+		background-color: rgba($mint, 0.7);
+		color: white;
+	}
+
+	&:focus{
+		@extend .section-btn-green:hover;
+		color: white;
+		outline: dotted rgba($sweet-red, 0.8);
+    	outline-offset: 14px;
+	}
+}
