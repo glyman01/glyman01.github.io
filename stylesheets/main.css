@@ -3652,7 +3652,7 @@ html > body .content {
 
 #stats {
   text-align: left;
-  display: none; }
+  /*display: none;*/ }
   @media all and (min-width: 768px) {
     #stats {
       display: block; } }
