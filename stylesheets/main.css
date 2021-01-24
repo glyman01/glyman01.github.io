@@ -2458,6 +2458,10 @@ body {
     outline: dotted rgba(237, 89, 102, 0.8);
     outline-offset: 14px; }
 
+.planet-nav svg#Planet-White {
+    max-width: 100px;
+}
+
 .nav-wrapper {
   position: absolute;
   /*	overflow: auto;
