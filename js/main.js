@@ -1,61 +1,87 @@
+var mainContent = document.getElementById('loader-wrapper');
+var loader = document.getElementById('loader-content');
+mainContent.classList.add('js-loading');
+
+//window.addEventListener("load", svgLoadCookie, false);
+
+function svgLoadCookie() {
+	mainContent.classList.remove('js-loading');
+	$('.wrapper').removeClass('hidden-main-content');
+	//$('#loader-wrapper').hide('slow');
+	$('body').addClass('loaded');
+}
+
+//setTimeout(svgLoadCookie, 2500);	
+
+let stateCheck = setInterval(() => {
+	if (document.readyState === 'complete') {
+		clearInterval(stateCheck);
+		// Faking the animation intro
+		svgLoadCookie();
+		// document ready
+	} else {
+		//
+	}
+}, 100);
+
 // DOM
 $(document).on('ready', function(){
     //console.log('js running?');
 
 	// Setting a cookie for the intro loader
 	
-	function svgLoadCookie(){
+	// function svgLoadCookie(){
 		
-		// if the cookie 'loaded' does not exist, do this -
+	// 	// if the cookie 'loaded' does not exist, do this -
 		
-		if (!Cookies.get('loaded')){
-			Cookies.set('loaded', 'true', {expires: 1});
+	// 	if (!Cookies.get('loaded')){
+	// 		Cookies.set('loaded', 'true', {expires: 1});
 		
-		// Faking the animation intro
-		    // var introAnimate = setTimeout(function(){
+	// 	// Faking the animation intro
+	// 	    // var introAnimate = setTimeout(function(){
 
-		    //     $('body').addClass('loaded');
+	// 	    //     $('body').addClass('loaded');
 
-		    //     if ($('body').hasClass('loaded')){
-		    //     	$('.wrapper').delay(0).queue(function(next){
-		    //     		$(this).removeClass('hidden-main-content');
-		    //     		next();
-		    //     	});
-		    // 	}
+	// 	    //     if ($('body').hasClass('loaded')){
+	// 	    //     	$('.wrapper').delay(0).queue(function(next){
+	// 	    //     		$(this).removeClass('hidden-main-content');
+	// 	    //     		next();
+	// 	    //     	});
+	// 	    // 	}
 		    
-		    // }, 0);
+	// 	    // }, 0);
 
-			let stateCheck = setInterval(() => {
-				if (document.readyState === 'complete') {
-					clearInterval(stateCheck);
-					// Faking the animation intro
-					var introAnimate = setTimeout(function(){
+	// 		let stateCheck = setInterval(() => {
+	// 			if (document.readyState === 'complete') {
+	// 				clearInterval(stateCheck);
+	// 				// Faking the animation intro
+	// 				var introAnimate = setTimeout(function(){
 
-					    $('body').addClass('loaded');
+	// 				    $('body').addClass('loaded');
 
-					    if ($('body').hasClass('loaded')){
-					    	$('.wrapper').delay(0).queue(function(next){
-					    		$(this).removeClass('hidden-main-content');
-					    		next();
-					    	});
-						}
+	// 				    if ($('body').hasClass('loaded')){
+	// 				    	$('.wrapper').delay(0).queue(function(next){
+	// 				    		$(this).removeClass('hidden-main-content');
+	// 				    		next();
+	// 				    	});
+	// 					}
 
-					}, 0);
-					// document ready
-				}
-			}, 100);
+	// 				}, 0);
+	// 				// document ready
+	// 			}
+	// 		}, 100);
 
 
-		// otherwise, if the cookie exists do this -
+	// 	// otherwise, if the cookie exists do this -
 		
-		} else {
-			$('body').addClass('loaded');
-	    	$('.wrapper').removeClass('hidden-main-content');
-	    	$('#loader-wrapper').hide();
-		}	
-	};
+	// 	} else {
+	// 		$('body').addClass('loaded');
+	//     	$('.wrapper').removeClass('hidden-main-content');
+	//     	$('#loader-wrapper').hide();
+	// 	}	
+	// };
 
-	svgLoadCookie();
+	// svgLoadCookie();
 
 	
 	// initializing swiper
