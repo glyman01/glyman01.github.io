@@ -376,6 +376,10 @@ $(document).on('ready', function(){
 	updateYear();
 
 	//wow
-	new WOW().init();
-
+	wow = new WOW(
+		{
+			animateClass: 'animate__animated', // default
+		}
+	)
+	wow.init();
 }); // end doc on ready
