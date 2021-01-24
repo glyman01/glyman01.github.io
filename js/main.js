@@ -16,9 +16,6 @@ HTMLElement.prototype.removeClass = function(remove) {
 
 function introAnimate() {
 
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
-	var hiddenContent = document.getElementById('main-content-wrapper');
 	//mainContent.classList.add('js-loading');
 
 	//window.addEventListener("load", svgLoadCookie, false);
@@ -35,7 +32,13 @@ function introAnimate() {
 	//setTimeout(svgLoadCookie, 2500);	
 
 	let stateCheck = setInterval(() => {
+
 		if (document.readyState === 'complete') {
+			
+			var mainContent = document.getElementById('loader-wrapper');
+			var loader = document.getElementById('loader-content');
+			var hiddenContent = document.getElementById('main-content-wrapper');
+
 			clearInterval(stateCheck);
 			// Faking the animation intro
 			mainContent.removeClass('js-loading');
