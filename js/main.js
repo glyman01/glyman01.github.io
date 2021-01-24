@@ -52,7 +52,7 @@ function introAnimate() {
 		} else {
 			//
 		}
-	}, 100);
+	}, 0);
 };
 
 introAnimate();
