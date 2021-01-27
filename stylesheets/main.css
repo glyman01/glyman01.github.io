@@ -3684,10 +3684,10 @@ html > body .content {
       font-size: 16px;
       font-weight: 400; }
   #stats .stat-bars {
-    float: right;
+    /*float: right;*/
     width: 0%; }
     #stats .stat-bars.is-playing {
-      width: 64%; }
+      width: 100%; }
     #stats .stat-bars > div {
       animation-play-state: paused !important; }
     #stats .stat-bars.is-playing > div {
