@@ -69,9 +69,9 @@ function svgLoadCookie(){
 				}, 100);
 
 		} else {
-			mainContent.removeClass('js-loading');
-			hiddenContent.removeClass('hidden-main-content');
 			document.body.className += 'loaded';
+			mainContent.style.display = 'none';
+			hiddenContent.removeClass('hidden-main-content');
 			console.log('ready + existing cookie');
 		};
 	};
