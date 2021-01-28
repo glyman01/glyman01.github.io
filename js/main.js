@@ -34,41 +34,50 @@ HTMLElement.prototype.removeClass = function(remove) {
 
 // introAnimate();
 
-function svgLoadCookie(){
-	
-	console.log('init cookie lookup');
-	
-	if (!Cookies.get('loaded')){
+console.log('not ready');
 
+<<<<<<< HEAD
 		window.onload = function() { // same as window.addEventListener('load', (event) => {
 	
+=======
+function svgLoadCookie(){
+	window.onload = function() { // same as window.addEventListener('load', (event) => {
+
+>>>>>>> parent of 6bca682... Load sequence
 		var mainContent = document.getElementById('loader-wrapper');
 		var loader = document.getElementById('loader-content');
 		var hiddenContent = document.getElementById('main-content-wrapper');
 
+<<<<<<< HEAD
 		Cookies.set('loaded', 'true', {expires: 5});
+=======
+		if (!Cookies.get('loaded')){
 
-			let stateCheck = setInterval(() => {
+			Cookies.set('loaded', 'true', {expires: 1});
+>>>>>>> parent of 6bca682... Load sequence
+
+				let stateCheck = setInterval(() => {
 
 
-				if (document.readyState === 'complete') {
+					if (document.readyState === 'complete') {
 
-					clearInterval(stateCheck);
-					// Faking the animation intro
-					mainContent.removeClass('js-loading');
-					//$('.wrapper').removeClass('hidden-main-content');
-					hiddenContent.removeClass('hidden-main-content');
-					//$('#loader-wrapper').hide('slow');
-					//document.body.classList.add('loaded');
-					document.body.className += 'loaded';
-					console.log('ready + cookie set');
-					//svgLoadCookie();
-					// document ready
-				} else {
-				//
-				}
-			}, 100);
+						clearInterval(stateCheck);
+						// Faking the animation intro
+						mainContent.removeClass('js-loading');
+						//$('.wrapper').removeClass('hidden-main-content');
+						hiddenContent.removeClass('hidden-main-content');
+						//$('#loader-wrapper').hide('slow');
+						//document.body.classList.add('loaded');
+						document.body.className += 'loaded';
+						console.log('ready + cookie set');
+						//svgLoadCookie();
+						// document ready
+					} else {
+					//
+					}
+				}, 100);
 
+<<<<<<< HEAD
 		}
 	} else {
 		var mainContent = document.getElementById('loader-wrapper');
@@ -80,6 +89,14 @@ function svgLoadCookie(){
 		mainContent.style.display = 'none';
 		hiddenContent.removeClass('hidden-main-content');
 		console.log('ready + existing cookie');
+=======
+		} else {
+			document.body.className += 'loaded';
+			mainContent.style.display = 'none';
+			hiddenContent.removeClass('hidden-main-content');
+			console.log('ready + existing cookie');
+		};
+>>>>>>> parent of 6bca682... Load sequence
 	};
 };
 
