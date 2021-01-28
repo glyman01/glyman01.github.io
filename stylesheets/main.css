@@ -3812,8 +3812,8 @@ html > body .content {
   position: relative; }
   @media all and (min-width: 480px) {
     #Contact .headline-about {
-      font-size: 6em;
-      padding: 240px 30px; } }
+      /*font-size: 6em;
+      padding: 240px 30px;*/ } }
 
 #Communication #container {
   text-align: center;
