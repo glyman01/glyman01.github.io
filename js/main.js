@@ -36,33 +36,48 @@ HTMLElement.prototype.removeClass = function(remove) {
 
 console.log('not ready');
 
-window.onload = function() { // same as window.addEventListener('load', (event) => {
-	let stateCheck = setInterval(() => {
+function svgLoadCookie(){
+	window.onload = function() { // same as window.addEventListener('load', (event) => {
 
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
-	var hiddenContent = document.getElementById('main-content-wrapper');
+		var mainContent = document.getElementById('loader-wrapper');
+		var loader = document.getElementById('loader-content');
+		var hiddenContent = document.getElementById('main-content-wrapper');
 
-	if (document.readyState === 'complete') {
-		
-		clearInterval(stateCheck);
-		// Faking the animation intro
-		mainContent.removeClass('js-loading');
-		//$('.wrapper').removeClass('hidden-main-content');
-		hiddenContent.removeClass('hidden-main-content');
-		//$('#loader-wrapper').hide('slow');
-		//document.body.classList.add('loaded');
-		document.body.className += 'loaded';
-		console.log('ready');
-		//svgLoadCookie();
-		// document ready
-	} else {
-		//
-	}
-	}, 100);
+		if (!Cookies.get('loaded')){
 
+			Cookies.set('loaded', 'true', {expires: 1});
+
+				let stateCheck = setInterval(() => {
+
+
+					if (document.readyState === 'complete') {
+
+						clearInterval(stateCheck);
+						// Faking the animation intro
+						mainContent.removeClass('js-loading');
+						//$('.wrapper').removeClass('hidden-main-content');
+						hiddenContent.removeClass('hidden-main-content');
+						//$('#loader-wrapper').hide('slow');
+						//document.body.classList.add('loaded');
+						document.body.className += 'loaded';
+						console.log('ready + cookie set');
+						//svgLoadCookie();
+						// document ready
+					} else {
+					//
+					}
+				}, 100);
+
+		} else {
+			mainContent.removeClass('js-loading');
+			hiddenContent.removeClass('hidden-main-content');
+			document.body.className += 'loaded';
+			console.log('ready + existing cookie');
+		};
+	};
 };
 
+svgLoadCookie();
 
 // DOM
 $(document).on('ready', function(){
