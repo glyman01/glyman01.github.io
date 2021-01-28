@@ -71,15 +71,42 @@ function svgLoadCookie(){
 
 		}
 	} else {
+	    //Attempt to get the element using document.getElementById
 		var mainContent = document.getElementById('loader-wrapper');
 		var loader = document.getElementById('loader-content');
 		var hiddenContent = document.getElementById('main-content-wrapper');
+		var body = document.body;
 
-		//document.body.className += 'loaded';
-		document.body.classList.add('loaded');
-		mainContent.style.display = 'none';
-		hiddenContent.removeClass('hidden-main-content');
-		console.log('ready + existing cookie');
+	    //If it isn't "undefined" and it isn't "null", then it exists.
+	    if(typeof(body) != 'undefined' && body != null){
+			body.classList.add("loaded");
+			//document.body.className += 'loaded';
+			//document.body.classList.add('loaded');
+			mainContent.style.display = 'none';
+			hiddenContent.removeClass('hidden-main-content');
+			console.log('ready + existing cookie');
+	    } else{
+			let stateCheck = setInterval(() => {
+
+
+				if (document.readyState === 'complete') {
+
+					clearInterval(stateCheck);
+					// Faking the animation intro
+					mainContent.removeClass('js-loading');
+					//$('.wrapper').removeClass('hidden-main-content');
+					hiddenContent.removeClass('hidden-main-content');
+					//$('#loader-wrapper').hide('slow');
+					//document.body.classList.add('loaded');
+					document.body.className += 'loaded';
+					console.log('ready + cookie set');
+					//svgLoadCookie();
+					// document ready
+				} else {
+				//
+				}
+			}, 100);
+	    }
 	};
 };
 
