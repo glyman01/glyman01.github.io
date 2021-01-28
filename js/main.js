@@ -33,14 +33,11 @@ HTMLElement.prototype.removeClass = function(remove) {
 // };
 
 // introAnimate();
-// window.onload = function() { // same as window.addEventListener('load', (event) => {
-// 	alert('Page loaded');
 
-// 	// image is loaded at this time
-// 	alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
-// };
+console.log('not ready');
 
-let stateCheck = setInterval(() => {
+window.onload = function() { // same as window.addEventListener('load', (event) => {
+	let stateCheck = setInterval(() => {
 
 	var mainContent = document.getElementById('loader-wrapper');
 	var loader = document.getElementById('loader-content');
@@ -61,9 +58,11 @@ let stateCheck = setInterval(() => {
 		// document ready
 	} else {
 		//
-		console.log('not ready');
 	}
-}, 100);
+	}, 100);
+
+};
+
 
 // DOM
 $(document).on('ready', function(){
