@@ -3666,7 +3666,7 @@ html > body .content {
     letter-spacing: .4em;
     margin-bottom: 20px; }
   #stats .stat-headings {
-    float: left; }
+    /*float: left;*/ }
   #stats .skill-header {
     color: #5B4C70;
     font-family: "Arvo", serif;
@@ -3800,17 +3800,15 @@ html > body .content {
       animation: statsSlide57 2.4s cubic-bezier(0.5, 0.03, 0.3, 1); }
 
 #Contact .headline-about {
-  color: #5b4c70;
+  color: #fff;
   word-wrap: break-word;
-  font-family: "Arvo", serif;
-  font-weight: 700;
+  font-size: 86px;
+    font-weight: bold;
+    line-height: .8em;
+    letter-spacing: 0;
   text-rendering: optimizeLegibility;
-  font-size: 4em;
-  -webkit-animation: fadeInDown 1s cubic-bezier(0.65, 0.4, 1, 0.4) 1 forwards;
-  -moz-animation: fadeInDown 1s cubic-bezier(0.65, 0.4, 1, 0.4) 1 forwards;
-  animation: fadeInDown 1s cubic-bezier(0.65, 0.4, 1, 0.4) 1 forwards;
-  transform: translateY(-50%);
-  padding: 150px 30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding: 12% 3%;
   position: relative; }
   @media all and (min-width: 480px) {
     #Contact .headline-about {
@@ -4149,7 +4147,7 @@ html > body .content {
     content: ' - '; }
 
 footer {
-  background-color: #58595B;
+  background-color: #131313;
   position: relative;
   bottom: 0; }
 
