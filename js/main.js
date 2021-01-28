@@ -38,15 +38,15 @@ function svgLoadCookie(){
 	
 	console.log('init cookie lookup');
 	
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
-	var hiddenContent = document.getElementById('main-content-wrapper');
-
 	if (!Cookies.get('loaded')){
 
 		window.onload = function() { // same as window.addEventListener('load', (event) => {
 	
-			Cookies.set('loaded', 'true', {expires: 5});
+		var mainContent = document.getElementById('loader-wrapper');
+		var loader = document.getElementById('loader-content');
+		var hiddenContent = document.getElementById('main-content-wrapper');
+
+		Cookies.set('loaded', 'true', {expires: 5});
 
 			let stateCheck = setInterval(() => {
 
@@ -71,7 +71,12 @@ function svgLoadCookie(){
 
 		}
 	} else {
-		document.body.className += 'loaded';
+		var mainContent = document.getElementById('loader-wrapper');
+		var loader = document.getElementById('loader-content');
+		var hiddenContent = document.getElementById('main-content-wrapper');
+
+		//document.body.className += 'loaded';
+		document.body.classList.add('loaded');
 		mainContent.style.display = 'none';
 		hiddenContent.removeClass('hidden-main-content');
 		console.log('ready + existing cookie');
