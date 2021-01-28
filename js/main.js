@@ -14,48 +14,50 @@ HTMLElement.prototype.removeClass = function(remove) {
   this.className = newClassName;
 }
 
-function introAnimate() {
+// function introAnimate() {
 
-	//mainContent.classList.add('js-loading');
+// 	//mainContent.classList.add('js-loading');
 
-	//window.addEventListener("load", svgLoadCookie, false);
+// 	//window.addEventListener("load", svgLoadCookie, false);
 
-	// function svgLoadCookie() {
-	// 	mainContent.removeClass('js-loading');
-	// 	//$('.wrapper').removeClass('hidden-main-content');
-	// 	hiddenContent.removeClass('hidden-main-content');
-	// 	//$('#loader-wrapper').hide('slow');
-	// 	//document.body.classList.add('loaded');
-	// 	document.body.className += 'loaded';
-	// }
+// 	// function svgLoadCookie() {
+// 	// 	mainContent.removeClass('js-loading');
+// 	// 	//$('.wrapper').removeClass('hidden-main-content');
+// 	// 	hiddenContent.removeClass('hidden-main-content');
+// 	// 	//$('#loader-wrapper').hide('slow');
+// 	// 	//document.body.classList.add('loaded');
+// 	// 	document.body.className += 'loaded';
+// 	// }
 
-	//setTimeout(svgLoadCookie, 2500);	
+// 	//setTimeout(svgLoadCookie, 2500);	
+// };
 
-	let stateCheck = setInterval(() => {
+// introAnimate();
 
-		if (document.readyState === 'complete') {
-			
-			var mainContent = document.getElementById('loader-wrapper');
-			var loader = document.getElementById('loader-content');
-			var hiddenContent = document.getElementById('main-content-wrapper');
+let stateCheck = setInterval(() => {
 
-			clearInterval(stateCheck);
-			// Faking the animation intro
-			mainContent.removeClass('js-loading');
-			//$('.wrapper').removeClass('hidden-main-content');
-			hiddenContent.removeClass('hidden-main-content');
-			//$('#loader-wrapper').hide('slow');
-			//document.body.classList.add('loaded');
-			document.body.className += 'loaded';
-			//svgLoadCookie();
-			// document ready
-		} else {
-			//
-		}
-	}, 0);
-};
+	var mainContent = document.getElementById('loader-wrapper');
+	var loader = document.getElementById('loader-content');
+	var hiddenContent = document.getElementById('main-content-wrapper');
 
-introAnimate();
+	if (document.readyState === 'complete') {
+		
+		clearInterval(stateCheck);
+		// Faking the animation intro
+		mainContent.removeClass('js-loading');
+		//$('.wrapper').removeClass('hidden-main-content');
+		hiddenContent.removeClass('hidden-main-content');
+		//$('#loader-wrapper').hide('slow');
+		//document.body.classList.add('loaded');
+		document.body.className += 'loaded';
+		console.log('ready');
+		//svgLoadCookie();
+		// document ready
+	} else {
+		//
+		console.log('not ready');
+	}
+}, 100);
 
 // DOM
 $(document).on('ready', function(){
