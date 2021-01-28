@@ -40,9 +40,9 @@ function svgLoadCookie(){
 	
 	if (!Cookies.get('loaded')){
 
-		Cookies.set('loaded', 'true', {expires: 1});
-
 		window.onload = function() { // same as window.addEventListener('load', (event) => {
+	
+			Cookies.set('loaded', 'true', {expires: 5});
 
 			var mainContent = document.getElementById('loader-wrapper');
 			var loader = document.getElementById('loader-content');
