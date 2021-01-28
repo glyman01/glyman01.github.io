@@ -33,6 +33,12 @@ HTMLElement.prototype.removeClass = function(remove) {
 // };
 
 // introAnimate();
+// window.onload = function() { // same as window.addEventListener('load', (event) => {
+// 	alert('Page loaded');
+
+// 	// image is loaded at this time
+// 	alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+// };
 
 let stateCheck = setInterval(() => {
 
