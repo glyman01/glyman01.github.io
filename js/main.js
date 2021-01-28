@@ -34,46 +34,48 @@ HTMLElement.prototype.removeClass = function(remove) {
 
 // introAnimate();
 
-console.log('not ready');
-
 function svgLoadCookie(){
-	window.onload = function() { // same as window.addEventListener('load', (event) => {
+	
+	console.log('init cookie lookup');
+	
+	if (!Cookies.get('loaded')){
 
-		var mainContent = document.getElementById('loader-wrapper');
-		var loader = document.getElementById('loader-content');
-		var hiddenContent = document.getElementById('main-content-wrapper');
+		Cookies.set('loaded', 'true', {expires: 1});
 
-		if (!Cookies.get('loaded')){
+		window.onload = function() { // same as window.addEventListener('load', (event) => {
 
-			Cookies.set('loaded', 'true', {expires: 1});
-
-				let stateCheck = setInterval(() => {
+			var mainContent = document.getElementById('loader-wrapper');
+			var loader = document.getElementById('loader-content');
+			var hiddenContent = document.getElementById('main-content-wrapper');
 
 
-					if (document.readyState === 'complete') {
+			let stateCheck = setInterval(() => {
 
-						clearInterval(stateCheck);
-						// Faking the animation intro
-						mainContent.removeClass('js-loading');
-						//$('.wrapper').removeClass('hidden-main-content');
-						hiddenContent.removeClass('hidden-main-content');
-						//$('#loader-wrapper').hide('slow');
-						//document.body.classList.add('loaded');
-						document.body.className += 'loaded';
-						console.log('ready + cookie set');
-						//svgLoadCookie();
-						// document ready
-					} else {
-					//
-					}
-				}, 100);
 
-		} else {
-			document.body.className += 'loaded';
-			mainContent.style.display = 'none';
-			hiddenContent.removeClass('hidden-main-content');
-			console.log('ready + existing cookie');
-		};
+				if (document.readyState === 'complete') {
+
+					clearInterval(stateCheck);
+					// Faking the animation intro
+					mainContent.removeClass('js-loading');
+					//$('.wrapper').removeClass('hidden-main-content');
+					hiddenContent.removeClass('hidden-main-content');
+					//$('#loader-wrapper').hide('slow');
+					//document.body.classList.add('loaded');
+					document.body.className += 'loaded';
+					console.log('ready + cookie set');
+					//svgLoadCookie();
+					// document ready
+				} else {
+				//
+				}
+			}, 100);
+
+		}
+	} else {
+		document.body.className += 'loaded';
+		mainContent.style.display = 'none';
+		hiddenContent.removeClass('hidden-main-content');
+		console.log('ready + existing cookie');
 	};
 };
 
