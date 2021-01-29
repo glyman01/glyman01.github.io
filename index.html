@@ -281,8 +281,7 @@
 				<div class="col-lg-12">
 					<div class="block-center">
 						<!-- Flickity -->
-						<div class="carousel" data-flickity='{ "wrapAround": true, "fullscreen": true, "contain": true, "cellAlign": "center" }'>
-					        <div class="carousel-wrapper">
+						<div class="carousel" data-flickity='{ "wrapAround": true, "fullscreen": true }'>
 
 					        	<div class="carousel-cell">
 									<p class="slide-details">Conversational Design</p>
@@ -390,7 +389,6 @@
 									</div>
 					            </div>
 
-					        </div>
 					        <!-- Add Pagination --
 					        <div class="swiper-pagination"></div>
 					        <!-- Add Arrows --
@@ -425,6 +423,10 @@
 		</div>
 		<!-- End Main Content -->
 		<style>
+			.carousel-cell {
+			  width: 100%; /* full width */
+			  margin-right: 10px;
+			}
 			/* smaller, dark, rounded square */
 			.flickity-prev-next-button {
 			  width: 30px;
