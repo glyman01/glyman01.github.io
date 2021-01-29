@@ -60,13 +60,13 @@ $(document).on('ready', function(){
 	
 	// initializing swiper
     // Swiper Slider
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        loop: true
-    });
+    // var swiper = new Swiper('.swiper-container', {
+    //     pagination: '.swiper-pagination',
+    //     paginationClickable: true,
+    //     nextButton: '.swiper-button-next',
+    //     prevButton: '.swiper-button-prev',
+    //     loop: true
+    // });
 
 	// Select all links with hashes
 	$('a[href*="#"]')
