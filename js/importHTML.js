@@ -36,50 +36,50 @@ HTMLElement.prototype.removeClass = function(remove) {
 
 console.log('not ready');
 
-function svgLoadCookie(){
+// function svgLoadCookie(){
 
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
-	var hiddenContent = document.getElementById('main-content-wrapper');
+// 	var mainContent = document.getElementById('loader-wrapper');
+// 	var loader = document.getElementById('loader-content');
+// 	var hiddenContent = document.getElementById('main-content-wrapper');
 
-	if (!Cookies.get('loaded')){
+// 	if (!Cookies.get('loaded')){
 
-		Cookies.set('loaded', 'true', {expires: 1});
+// 		Cookies.set('loaded', 'true', {expires: 1});
 
-		let stateCheck = setInterval(() => {
+// 		let stateCheck = setInterval(() => {
 
 
-			if (document.readyState === 'complete') {
+// 			if (document.readyState === 'complete') {
 
-				clearInterval(stateCheck);
-				// Faking the animation intro
-				mainContent.removeClass('js-loading');
-				//$('.wrapper').removeClass('hidden-main-content');
-				hiddenContent.removeClass('hidden-main-content');
-				//$('#loader-wrapper').hide('slow');
-				//document.body.classList.add('loaded');
-				document.body.className += 'loaded';
-				console.log('ready + cookie set');
-				//svgLoadCookie();
-				// document ready
-			} else {
-			//
-			}
-		}, 100);
+// 				clearInterval(stateCheck);
+// 				// Faking the animation intro
+// 				mainContent.removeClass('js-loading');
+// 				//$('.wrapper').removeClass('hidden-main-content');
+// 				hiddenContent.removeClass('hidden-main-content');
+// 				//$('#loader-wrapper').hide('slow');
+// 				//document.body.classList.add('loaded');
+// 				document.body.className += 'loaded';
+// 				console.log('ready + cookie set');
+// 				//svgLoadCookie();
+// 				// document ready
+// 			} else {
+// 			//
+// 			}
+// 		}, 100);
 
-	} else {
+// 	} else {
 
-		//document.body.className += 'loaded';
-		document.body.classList.add('loaded');
-		mainContent.style.display = 'none';
-		hiddenContent.removeClass('hidden-main-content');
-		console.log('ready + existing cookie');
-	};
-};
+// 		//document.body.className += 'loaded';
+// 		document.body.classList.add('loaded');
+// 		mainContent.style.display = 'none';
+// 		hiddenContent.removeClass('hidden-main-content');
+// 		console.log('ready + existing cookie');
+// 	};
+// };
 
-window.onload = function() { // same as window.addEventListener('load', (event) => {
-	svgLoadCookie();
-};
+// window.onload = function() { // same as window.addEventListener('load', (event) => {
+// 	svgLoadCookie();
+// };
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
