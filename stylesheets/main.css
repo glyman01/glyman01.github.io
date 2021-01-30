@@ -2633,6 +2633,10 @@ body {
   width: 100%;
   margin: 0px auto; }
 
+.heroes {
+    padding: 10% 3% 6%;
+}
+
 .block-center, .block-center-spaced, .overflow {
   width: 100%;
   display: block;
@@ -2677,16 +2681,16 @@ body {
   background-color: #58595B; }
 
 .block-nasa {
-  height: 350px;
+  /*height: 350px;
   max-height: 350px;
-  min-height: 350px;
+  min-height: 350px;*/
   width: 100%;
   padding: 0; }
   @media all and (min-width: 480px) {
     .block-nasa {
-      height: 500px;
+      /*height: 500px;
       max-height: 500px;
-      min-height: 500px; } }
+      min-height: 500px;*/ } }
 
 .block-nasa {
   background-size: cover !important;

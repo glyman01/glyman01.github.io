@@ -118,11 +118,11 @@ $(document).on('ready', function(){
 		if(result.media_type == "video") {
 
 			// we want to insert a fallback image url when a video is detected
-			$('.block-nasa').css('background', 'url(' + fallbackImageUrl + ') top center no-repeat');
+			$('.block-nasa').css('background', 'url(' + fallbackImageUrl + ') 50% 50% no-repeat');
 
 		} else {
 
-		    $('.block-nasa').css('background', 'url(' + result.url + ') top center no-repeat');
+		    $('.block-nasa').css('background', 'url(' + result.url + ') 50% 50% no-repeat');
 		}	
 	};
 
