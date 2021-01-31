@@ -324,13 +324,49 @@ $(document).on('ready', function(){
 	)
 	wow.init();
 
-	if (!Cookies.get('modal')){
-		$('#experimentalModal').modal('show');
-			//bs modal
-		setTimeout(function(){
-			$('#experimentalModal').modal('hide');
-			Cookies.set('modal', 'viewed', {expires: 1});
-		}, 4000);
-	};
+
+	function countDown() {
+		var timeleft = 3;var downloadTimer = "";
+		
+		function refreshTime() {
+			downloadTimer = setInterval(function(){
+
+				if(timeleft <= 0){
+					clearInterval(downloadTimer);
+					$('#experimentalModal').modal('toggle');
+					//document.getElementById("countdown").innerHTML = "0";
+				} else {
+					//
+				}
+				timeleft -= 1;
+			}, 1000);
+		}
+
+		$('#experimentalModal').on('show.bs.modal', function () {
+			refreshTime();
+		});
+
+
+		$('#experimentalModal').on('hide.bs.modal', function (e) {
+			 //alert('I should stop now');
+			 //return;
+			 clearInterval(downloadTimer);
+			 Cookies.set('modal', 'viewed', {expires: 1});
+		});
+	}
+	countDown();
+
+	if (!Cookies.get('modal')) {
+      $('#experimentalModal').modal('toggle');
+	}
+
+	// if (!Cookies.get('modal')){
+	// 	$('#experimentalModal').modal('show');
+	// 		//bs modal
+	// 	setTimeout(function(){
+	// 		$('#experimentalModal').modal('hide');
+	// 		Cookies.set('modal', 'viewed', {expires: 1});
+	// 	}, 4000);
+	// };
 
 }); // end doc on ready
