@@ -329,8 +329,8 @@ $(document).on('ready', function(){
 			//bs modal
 		setTimeout(function(){
 			$('#experimentalModal').modal('hide');
+			Cookies.set('modal', 'viewed', {expires: 1});
 		}, 4000);
-		Cookies.set('modal', 'viewed', {expires: 1});
 	};
 
 }); // end doc on ready
