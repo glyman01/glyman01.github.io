@@ -323,4 +323,14 @@ $(document).on('ready', function(){
 		}
 	)
 	wow.init();
+
+	if (!Cookies.get('modal')){
+		$('#experimentalModal').modal('show');
+			//bs modal
+		setTimeout(function(){
+			$('#experimentalModal').modal('hide');
+		}, 4000);
+		Cookies.set('modal', 'viewed', {expires: 1});
+	};
+
 }); // end doc on ready
