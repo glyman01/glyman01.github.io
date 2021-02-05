@@ -19,15 +19,17 @@ class HTMLInclude extends HTMLElement {
             throw new Error(`Failed to load file (${src}) for <html-import>.`);
         }
         this.shadowRoot.innerHTML = await rsp.text();
-
-        // Apply external styles to the shadow dom
-        const linkElem = document.createElement('link');
-        linkElem.setAttribute('rel', 'stylesheet');
-        linkElem.setAttribute('href', '/stylesheets/main.css');
-
-        // Attach the created element to the shadow dom
-        this.prepend(linkElem);
     }
 }
 customElements.define("html-include", HTMLInclude);
 
+
+var shadowroot = element.shadowRoot;
+
+// Apply external styles to the shadow dom
+const linkElem = document.createElement('link');
+linkElem.setAttribute('rel', 'stylesheet');
+linkElem.setAttribute('href', '/stylesheets/main.css');
+
+// Attach the created element to the shadow dom
+shadowroot.prepend(linkElem);
