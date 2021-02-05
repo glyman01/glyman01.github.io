@@ -374,6 +374,7 @@ $(document).on('ready', function(){
 
 
 	$('body').on('change', '.loaded', function(){
+		console.log('modal entry??');
 		if (!Cookies.get('modal')) {
 			$('#experimentalModal').modal('toggle');
 		}
