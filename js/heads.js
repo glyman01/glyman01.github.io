@@ -19,13 +19,12 @@ console.log('not ready');
 
 function svgLoadCookie(){
 
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
+	//var mainContent = document.getElementById('loader-wrapper');
+	//loader = document.getElementById('loader-content');
 	var hiddenContent = document.getElementById('main-content-wrapper');
 
 	var mainContent = document.querySelector('#loader-wrapper');
 	var loader = document.querySelector('#loader-content');
-	var hiddenContent = document.querySelector('#main-content-wrapper');
 
 	if (!Cookies.get('loaded')){
 
