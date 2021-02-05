@@ -377,7 +377,9 @@ $(document).on('ready', function(){
 	var observer = new MutationObserver(function (event) {
 		if (!Cookies.get('modal')) {
 			console.log('modal entry??');
-			$('#experimentalModal').modal('toggle');
+			setTimeout(function() {
+				$('#experimentalModal').modal('toggle');
+			}, 1200);
 		};
 		console.log('class that changed ' + changeObject.className);  
 	})
