@@ -174,6 +174,19 @@ $(document).on('ready', function(){
 		}	
 	};
 
+	// Scripture Daily Verse API
+	// var scriptureURL = "https://beta.ourmanna.com/api/v1/js/?order=random";
+
+	// $.ajax({
+	//   url: scriptureURL,
+	//   success: newVerse
+	// });
+
+	// function newVerse(result){
+	//     $('.block-nasa').css('background', 'url(' + result.scriptureURL + ') 50% 50% no-repeat');
+	// };
+
+
 	$('#page-nav').viewportChecker();
 	$('.stat-bars').viewportChecker();
 	$('#stats').viewportChecker();
@@ -382,6 +395,8 @@ $(document).on('ready', function(){
 				if(timeleft <= 0){
 					clearInterval(downloadTimer);
 					$('#experimentalModal').modal('toggle');
+					Cookies.set('modal', 'viewed', {expires: 1});
+
 					//document.getElementById("countdown").innerHTML = "0";
 				} else {
 					//
@@ -401,19 +416,20 @@ $(document).on('ready', function(){
 			 clearInterval(downloadTimer);
 			 Cookies.set('modal', 'viewed', {expires: 1});
 		});
-	}
+	};
+
+	countDown();
+
 
 	$('body').on('change', '.loaded', function(){
-		countDown();
+		if (!Cookies.get('modal')) {
+			$('#experimentalModal').modal('toggle');
+		}
 	});
 	// $("#classchange-btn").on("classChanged", function () { 
 	// 	countDown();
 	// }); 
 
-
-	if (!Cookies.get('modal')) {
-      $('#experimentalModal').modal('toggle');
-	}
 
 	// if (!Cookies.get('modal')){
 	// 	$('#experimentalModal').modal('show');
