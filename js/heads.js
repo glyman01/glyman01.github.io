@@ -14,9 +14,6 @@ HTMLElement.prototype.removeClass = function(remove) {
   this.className = newClassName;
 }
 
-//Load html partials
-includeHTML();
-
 
 console.log('not ready');
 

@@ -373,12 +373,10 @@ $(document).on('ready', function(){
 	countDown();
 
 
-	$('body').on('change', '.loaded', function(){
+    if ($('body').hasClass('open') && (!Cookies.get('modal'))) {
 		console.log('modal entry??');
-		if (!Cookies.get('modal')) {
-			$('#experimentalModal').modal('toggle');
-		}
-	});
+		$('#experimentalModal').modal('toggle');
+	};
 	// $("#classchange-btn").on("classChanged", function () { 
 	// 	countDown();
 	// }); 
