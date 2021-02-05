@@ -1,5 +1,50 @@
-includeHTML();
+console.log('not ready');
 
+function svgLoadCookie(){
+
+	var mainContent = document.getElementById('loader-wrapper');
+	var loader = document.getElementById('loader-content');
+	var hiddenContent = document.getElementById('main-content-wrapper');
+
+	if (!Cookies.get('loaded')){
+
+		Cookies.set('loaded', 'true', {expires: 1});
+
+		let stateCheck = setInterval(() => {
+
+
+			if (document.readyState === 'complete') {
+
+				clearInterval(stateCheck);
+				// Faking the animation intro
+				mainContent.removeClass('js-loading');
+				//$('.wrapper').removeClass('hidden-main-content');
+				hiddenContent.removeClass('hidden-main-content');
+				//$('#loader-wrapper').hide('slow');
+				//document.body.classList.add('loaded');
+				document.body.className += 'loaded';
+				console.log('ready + cookie set');
+				//svgLoadCookie();
+				// document ready
+			} else {
+			//
+			}
+		}, 100);
+
+	} else {
+
+		//document.body.className += 'loaded';
+		document.body.classList.add('loaded');
+		mainContent.style.display = 'none';
+		hiddenContent.removeClass('hidden-main-content');
+		console.log('ready + existing cookie');
+	};
+};
+
+
+window.onload = function() { // same as window.addEventListener('load', (event) => {
+	svgLoadCookie();
+};
 
 // DOM Ready
 $(document).on('ready', function(){
@@ -329,7 +374,7 @@ $(document).on('ready', function(){
 
 
 	function countDown() {
-		var timeleft = 3;var downloadTimer = "";
+		var timeleft = 4;var downloadTimer = "";
 		
 		function refreshTime() {
 			downloadTimer = setInterval(function(){
@@ -357,7 +402,14 @@ $(document).on('ready', function(){
 			 Cookies.set('modal', 'viewed', {expires: 1});
 		});
 	}
-	countDown();
+
+	$('body').on('change', '.loaded', function(){
+		countDown();
+	});
+	// $("#classchange-btn").on("classChanged", function () { 
+	// 	countDown();
+	// }); 
+
 
 	if (!Cookies.get('modal')) {
       $('#experimentalModal').modal('toggle');

@@ -1,3 +1,6 @@
+//Load html partials
+includeHTML();
+
 //Vanilla remove class function
 HTMLElement.prototype.removeClass = function(remove) {
   var newClassName = "";
@@ -33,50 +36,3 @@ HTMLElement.prototype.removeClass = function(remove) {
 // };
 
 // introAnimate();
-
-console.log('not ready');
-
-function svgLoadCookie(){
-
-	var mainContent = document.getElementById('loader-wrapper');
-	var loader = document.getElementById('loader-content');
-	var hiddenContent = document.getElementById('main-content-wrapper');
-
-	if (!Cookies.get('loaded')){
-
-		Cookies.set('loaded', 'true', {expires: 1});
-
-		let stateCheck = setInterval(() => {
-
-
-			if (document.readyState === 'complete') {
-
-				clearInterval(stateCheck);
-				// Faking the animation intro
-				mainContent.removeClass('js-loading');
-				//$('.wrapper').removeClass('hidden-main-content');
-				hiddenContent.removeClass('hidden-main-content');
-				//$('#loader-wrapper').hide('slow');
-				//document.body.classList.add('loaded');
-				document.body.className += 'loaded';
-				console.log('ready + cookie set');
-				//svgLoadCookie();
-				// document ready
-			} else {
-			//
-			}
-		}, 100);
-
-	} else {
-
-		//document.body.className += 'loaded';
-		document.body.classList.add('loaded');
-		mainContent.style.display = 'none';
-		hiddenContent.removeClass('hidden-main-content');
-		console.log('ready + existing cookie');
-	};
-};
-
-window.onload = function() { // same as window.addEventListener('load', (event) => {
-	svgLoadCookie();
-};
