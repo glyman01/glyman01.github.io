@@ -1,5 +1,3 @@
-# -- ./js/html-include.js --
-
 class HTMLInclude extends HTMLElement {
     constructor(src) {
         super();
