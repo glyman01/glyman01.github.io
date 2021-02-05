@@ -26,9 +26,8 @@ class HTMLInclude extends HTMLElement {
         linkElem.setAttribute('rel', 'stylesheet');
         linkElem.setAttribute('href', '/stylesheets/main.css');
 
-        var shadowElem = this.querySelector('div');
         // Attach the created element to the shadow dom
-        shadowElem.prepend(linkElem);
+        this.shadowRoot.appendChild(linkElem);
     }
 }
 customElements.define("html-include", HTMLInclude);
