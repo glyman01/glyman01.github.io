@@ -337,7 +337,6 @@ $(document).on('ready', function(){
 	)
 	wow.init();
 
-
 	function countDown() {
 		var timeleft = 4;var downloadTimer = "";
 		
@@ -369,15 +368,27 @@ $(document).on('ready', function(){
 			 Cookies.set('modal', 'viewed', {expires: 1});
 		});
 	};
-
 	countDown();
 
-	console.log('modal entry??');
 
-    if (!Cookies.get('modal')) {
-		console.log('modal entry??');
-		$('#experimentalModal').modal('toggle');
-	};
+	console.log('modal ready??');
+
+	var changeObject = document.body();
+	var observer = new MutationObserver(function (event) {
+		if (!Cookies.get('modal')) {
+			console.log('modal entry??');
+			$('#experimentalModal').modal('toggle');
+		};
+		console.log('class that changed ' + changeObject.className);  
+	})
+
+	observer.observe(changeObject, {
+		attributes: true, 
+		attributeFilter: ['class'],
+		childList: false, 
+		characterData: false
+	})
+
 	// $("#classchange-btn").on("classChanged", function () { 
 	// 	countDown();
 	// }); 
