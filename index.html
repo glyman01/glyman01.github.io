@@ -7,6 +7,8 @@
 	<head>
 		<!-- Modules import -->
 		<script src="/js/importHTML.js"></script>
+        <script type="text/javascript" src="/js/html-include.js"></script>
+
 		<script src="/js/heads.js"></script>
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -189,7 +191,9 @@
 		<div id="loader-wrapper" class="content js-loading" include-html="loader-wrapper.html"></div>
 		<!-- Main Content -->
 		<div id="main-content-wrapper" class="wrapper hidden-main-content">
-			<nav include-html="nav.html"></nav>
+			<nav include-html="/partials/nav.html" class="desktop-nav nav-wrapper js-nav-reset visible-xs visible-sm visible-md visible-lg"></nav>
+	        <html-include> /partials/nav.html   </html-include>
+
 			<section id="intro" class="intro">
 			    	<div class="row">
 			    		<div class="center-absolute">
