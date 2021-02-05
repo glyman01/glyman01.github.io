@@ -372,8 +372,9 @@ $(document).on('ready', function(){
 
 	countDown();
 
+	console.log('modal entry??');
 
-    if ($('body').hasClass('open') && (!Cookies.get('modal'))) {
+    if (!Cookies.get('modal')) {
 		console.log('modal entry??');
 		$('#experimentalModal').modal('toggle');
 	};
