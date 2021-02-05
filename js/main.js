@@ -1,4 +1,7 @@
-// DOM
+includeHTML();
+
+
+// DOM Ready
 $(document).on('ready', function(){
     //console.log('js running?');
 
