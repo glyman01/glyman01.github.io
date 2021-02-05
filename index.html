@@ -189,12 +189,18 @@
 		<!--[if lt IE 7]>
 		<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 		<![endif]-->
-        <html-include> /partials/loader-wrapper.html   </html-include>
+        <html-include> 
+        	/partials/loader-wrapper.html 
+			<link rel="stylesheet" href="stylesheets/main.css">
+        </html-include>
 
 		<div id="loader-wrapper" class="content js-loading" include-html="loader-wrapper.html"></div>
 		<!-- Main Content -->
 		<div id="main-content-wrapper" class="wrapper hidden-main-content">
-	        <html-include> /partials/nav.html   </html-include>
+	        <html-include> 
+	        	/partials/nav.html   
+	       		<link rel="stylesheet" href="stylesheets/main.css">
+	        </html-include>
 
 			<section id="intro" class="intro">
 			    	<div class="row">
