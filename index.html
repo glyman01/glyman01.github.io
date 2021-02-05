@@ -6,7 +6,6 @@
 	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 		<!-- Modules import -->
-		<script src="/js/importHTML.js"></script>
         <script type="text/javascript" src="/js/html-include.js"></script>
 
 		<script src="/js/heads.js"></script>
@@ -182,10 +181,7 @@
 
 		    Hello. This site is extremely experimental and is a work in progress. From time to time you may see that certain parts do not work or have missing content. If you'd like to make me aware of anything, please email me at <a href="mailto:hey@geofflyman.com" target="_blank">hey@geofflyman.com</a>.
 		</span>
-		<script>
-			//Load html partials
-			includeHTML();
-		</script>
+
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8X2HSW"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -193,10 +189,11 @@
 		<!--[if lt IE 7]>
 		<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 		<![endif]-->
+        <html-include> /partials/loader-wrapper.html   </html-include>
+
 		<div id="loader-wrapper" class="content js-loading" include-html="loader-wrapper.html"></div>
 		<!-- Main Content -->
 		<div id="main-content-wrapper" class="wrapper hidden-main-content">
-			<nav include-html="/partials/nav.html" class="desktop-nav nav-wrapper js-nav-reset visible-xs visible-sm visible-md visible-lg"></nav>
 	        <html-include> /partials/nav.html   </html-include>
 
 			<section id="intro" class="intro">
@@ -451,7 +448,7 @@
 					</div>
 				</div>
 			</section>
-			<footer include-html="footer.html"></footer>
+	        <html-include> /partials/footer.html</html-include>
 		</div>
 		<!-- End Main Content -->
 
