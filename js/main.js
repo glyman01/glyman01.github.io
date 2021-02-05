@@ -373,7 +373,7 @@ $(document).on('ready', function(){
 
 	console.log('modal ready??');
 
-	var changeObject = document.body;
+	var changeObject = document.getElementById('main-content-wrapper');
 	var observer = new MutationObserver(function (event) {
 		if (!Cookies.get('modal')) {
 			console.log('modal entry??');
