@@ -29,4 +29,4 @@ linkElem.setAttribute('rel', 'stylesheet');
 linkElem.setAttribute('href', '/stylesheets/main.css');
 
 // Attach the created element to the shadow dom
-shadow.appendChild(linkElem);
+shadowRoot.appendChild(linkElem);
