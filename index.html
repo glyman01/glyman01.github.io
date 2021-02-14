@@ -455,31 +455,10 @@
 				<div class="container">
 					<div>&nbsp;</div>
 					<div>&nbsp;</div>
-					<div id="verseQuote" class="center">
-						<!-- <script>
-							(function() {
-							  $(document ).ready(function() {
-							      getVerse();
-							  });
-
-							  var getVerse = function() {
-							      $.ajax({
-							        url: "https://labs.bible.org/api/?passage=votd&type=json&callback=randomVerse", 
-							        crossDomain: true,
-							        dataType: 'jsonp',
-							        success: function(result){
-							           $("#verseQuote")
-							             .html('<strong>'+
-							                   result[0].bookname+
-							                   ' ' + result[0].chapter +
-							                   ':' + result[0].verse +
-							                   '</strong> ' +
-							                   result[0].text);
-							        }
-							      });
-							  }
-							})();
-						</script> -->
+					<div class="row">
+						<div class="col-md-8">
+							<div id="verseQuote" class="center">Loading...</div>
+						</div>
 					</div>
 					<div>&nbsp;</div>
 					<div>&nbsp;</div>

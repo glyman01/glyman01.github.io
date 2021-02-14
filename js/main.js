@@ -425,12 +425,7 @@ $(document).on('ready', function(){
         dataType: 'jsonp',
         success: function(result){
            $("#verseQuote")
-             .html('<strong>'+
-                   result[0].bookname+
-                   ' ' + result[0].chapter +
-                   ':' + result[0].verse +
-                   '</strong> ' +
-                   result[0].text);
+             .html('<p class="panel-heading text-muted">'+result[0].text);+'</p> ' + '<strong class="badge">'+result[0].bookname+' ' + result[0].chapter +':' + result[0].verse +'</strong> '
         }
       });
   }
