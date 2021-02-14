@@ -126,18 +126,24 @@ $(document).on('ready', function(){
 		}	
 	};
 
-	// Scripture Daily Verse API
-	// var scriptureURL = "https://beta.ourmanna.com/api/v1/js/?order=random";
-
-	// $.ajax({
-	//   url: scriptureURL,
-	//   success: newVerse
-	// });
-
-	// function newVerse(result){
-	//     $('.block-nasa').css('background', 'url(' + result.scriptureURL + ') 50% 50% no-repeat');
-	// };
-
+	//daily verse generator
+	var getVerse = function() {
+	  $.ajax({
+	    url: "https://labs.bible.org/api/?passage=votd&type=json&callback=dailyVerse", 
+	    crossDomain: true,
+	    dataType: 'jsonp',
+	    success: function(result){
+	       $("#verseQuote")
+	         .html('<strong>'+
+	               result[0].bookname+
+	               ' ' + result[0].chapter +
+	               ':' + result[0].verse +
+	               '</strong> ' +
+	               result[0].text);
+	    }
+	  });
+	};
+	getVerse();
 
 	$('#page-nav').viewportChecker();
 	$('.stat-bars').viewportChecker();
