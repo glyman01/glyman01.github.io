@@ -412,3 +412,26 @@ $(document).on('ready', function(){
 	// };
 
 }); // end doc on ready
+
+(function() {
+  $(document ).ready(function() {
+      getVerse();
+  });
+
+  var getVerse = function() {
+      $.ajax({
+        url: "https://labs.bible.org/api/?passage=votd&type=json&callback=randomVerse", 
+        crossDomain: true,
+        dataType: 'jsonp',
+        success: function(result){
+           $("#verseQuote")
+             .html('<strong>'+
+                   result[0].bookname+
+                   ' ' + result[0].chapter +
+                   ':' + result[0].verse +
+                   '</strong> ' +
+                   result[0].text);
+        }
+      });
+  }
+})();
