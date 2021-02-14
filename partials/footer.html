@@ -2,7 +2,30 @@
 	<div class="container">
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
-		<div id="verseQuote" class="center">Loading...</div>
+		<div id="verseQuote" class="center">
+			<script>
+				$(function() {
+					//daily verse generator
+					var getVerse = function() {
+					  $.ajax({
+					    url: "https://labs.bible.org/api/?passage=votd&type=json&callback=dailyVerse", 
+					    crossDomain: true,
+					    dataType: 'jsonp',
+					    success: function(result){
+					       $("#verseQuote")
+					         .html('<strong>'+
+					               result[0].bookname+
+					               ' ' + result[0].chapter +
+					               ':' + result[0].verse +
+					               '</strong> ' +
+					               result[0].text);
+					    }
+					  });
+					};
+					getVerse();
+				});
+			</script>
+		</div>
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 		<p class="footer-txt center">© <span class="footerYear"></span> Geoffrey T. Lyman<br></p>
@@ -11,23 +34,3 @@
 		<div>&nbsp;</div>
 	</div>
 </footer>
-<script>
-	//daily verse generator
-	var getVerse = function() {
-	  $.ajax({
-	    url: "https://labs.bible.org/api/?passage=votd&type=json&callback=dailyVerse", 
-	    crossDomain: true,
-	    dataType: 'jsonp',
-	    success: function(result){
-	       $("#verseQuote")
-	         .html('<strong>'+
-	               result[0].bookname+
-	               ' ' + result[0].chapter +
-	               ':' + result[0].verse +
-	               '</strong> ' +
-	               result[0].text);
-	    }
-	  });
-	};
-	getVerse();
-</script>
