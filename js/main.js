@@ -351,7 +351,7 @@ $(document).on('ready', function(){
 
 				if(timeleft <= 0){
 					clearInterval(downloadTimer);
-					$('#experimentalModal').modal('toggle');
+					$('#experimentalModal').toggle();
 					Cookies.set('modal', 'viewed', {expires: 1});
 
 					//document.getElementById("countdown").innerHTML = "0";
@@ -362,12 +362,12 @@ $(document).on('ready', function(){
 			}, 1000);
 		}
 
-		$('#experimentalModal').on('show.bs.modal', function () {
+		$('#experimentalModal').addEventListener('show.bs.modal', function () {
 			refreshTime();
 		});
 
 
-		$('#experimentalModal').on('hide.bs.modal', function (e) {
+		$('#experimentalModal').addEventListener('hide.bs.modal', function (e) {
 			 //alert('I should stop now');
 			 //return;
 			 clearInterval(downloadTimer);
@@ -384,7 +384,7 @@ $(document).on('ready', function(){
 		if (!Cookies.get('modal')) {
 			console.log('modal entry??');
 			setTimeout(function() {
-				$('#experimentalModal').modal('toggle');
+				$('#experimentalModal').toggle();
 			}, 1200);
 		};
 		console.log('class that changed ' + changeObject.className);  
