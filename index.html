@@ -6,9 +6,9 @@
 	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 		<!-- Modules import -->
-        <script type="text/javascript" src="/js/html-include.js"></script>
+        <script type="text/javascript" src="js/html-include.js"></script>
 
-		<script src="/js/heads.js"></script>
+		<script src="js/heads.js"></script> <!-- Assuming heads.js also needs relative path -->
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -30,10 +30,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 		<link rel="stylesheet" href="stylesheets/main.css">
 
-		<!--[if lt IE 9]>
-		<script src="/js/Vendor/html5shiv.min.js"></script>
-		<script src="/js/Vendor/html5shiv-printshiv.min.js"></script>
-		<![endif]-->
 		<link rel="icon" href="image/favicon.png" type="image/x-icon">
 		<!--META -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -165,24 +161,20 @@
 		<meta name="description" content="Geoff Lyman is a digital marketer focused on digital strategy including inbound, UX, web design/dev, paid search, and MarTech innovation.">
 		<meta name="keywords" content="digital marketing, marketing strategy, search engine optimization, website optimization, conversion rate optimization, a/b testing, front-end web development">
 		<meta name="robots" content="index, follow">
-		<script src="/js/node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="/js/node_modules/jquery-migrate/dist/jquery-migrate.min.js"></script>
-		<!-- <script src="/js/Vendor/bootstrap.min.js"></script> -->
-		<!-- <script src="/js/Vendor/swiper.jquery.min.js"></script> -->
-		<script src="/js/Vendor/classie.js"></script>
-		<script src="/js/Vendor/jquery.viewportchecker.min.js"></script>
-		<script src="/js/Vendor/cookie.js"></script>
-		<script src="/js/Vendor/wow.min.js"></script>
-		<script src="/js/Vendor/flickity.pkgd.min.js"></script>
+		<!-- Removed jQuery and jQuery Migrate -->
+		<!-- <script src="js/Vendor/bootstrap.min.js"></script> -->
+		<!-- <script src="js/Vendor/swiper.jquery.min.js"></script> -->
+		<script src="js/Vendor/cookie.js"></script>
+		<script src="js/Vendor/flickity.pkgd.min.js"></script>
 		<script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
 	</head>
 	<body>
-		<html-include> 
-        	/partials/warning.html 
+		<html-include>
+        	partials/warning.html
         </html-include>
         <div id="loader-wrapper" class="content js-loading">
-			<html-include> 
-				/partials/loader-wrapper.html 
+			<html-include>
+				partials/loader-wrapper.html
 			</html-include>
 	    </div>
 		<!-- Google Tag Manager (noscript) -->
@@ -194,8 +186,8 @@
 		<![endif]-->
 		<!-- Main Content -->
 		<div id="main-content-wrapper" class="wrapper hidden-main-content">
-	        <html-include> 
-	        	/partials/nav.html   
+	        <html-include>
+	        	partials/nav.html
 	        </html-include>
 
 			<section id="intro" class="intro">
@@ -497,6 +489,6 @@
 			</style>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-		<script src="/js/main.js"></script>
+		<script src="js/main.js"></script>
     </body>
 </html>

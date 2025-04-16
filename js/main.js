@@ -1,132 +1,44 @@
-// DOM Ready
-$(document).on('ready', function(){
+// Wait for the DOM to be fully loaded before running scripts
+document.addEventListener('DOMContentLoaded', function() {
     //console.log('js running?');
 
-	// Setting a cookie for the intro loader
-	
-	// function svgLoadCookie(){
-		
-	// 	// if the cookie 'loaded' does not exist, do this -
-		
-	// 	if (!Cookies.get('loaded')){
-	// 		Cookies.set('loaded', 'true', {expires: 1});
-		
-	// 	// Faking the animation intro
-	// 	    // var introAnimate = setTimeout(function(){
+	// Removed commented-out svgLoadCookie function
 
-	// 	    //     $('body').addClass('loaded');
-
-	// 	    //     if ($('body').hasClass('loaded')){
-	// 	    //     	$('.wrapper').delay(0).queue(function(next){
-	// 	    //     		$(this).removeClass('hidden-main-content');
-	// 	    //     		next();
-	// 	    //     	});
-	// 	    // 	}
-		    
-	// 	    // }, 0);
-
-	// 		let stateCheck = setInterval(() => {
-	// 			if (document.readyState === 'complete') {
-	// 				clearInterval(stateCheck);
-	// 				// Faking the animation intro
-	// 				var introAnimate = setTimeout(function(){
-
-	// 				    $('body').addClass('loaded');
-
-	// 				    if ($('body').hasClass('loaded')){
-	// 				    	$('.wrapper').delay(0).queue(function(next){
-	// 				    		$(this).removeClass('hidden-main-content');
-	// 				    		next();
-	// 				    	});
-	// 					}
-
-	// 				}, 0);
-	// 				// document ready
-	// 			}
-	// 		}, 100);
-
-
-	// 	// otherwise, if the cookie exists do this -
-		
-	// 	} else {
-	// 		$('body').addClass('loaded');
-	//     	$('.wrapper').removeClass('hidden-main-content');
-	//     	$('#loader-wrapper').hide();
-	// 	}	
-	// };
-
-	// svgLoadCookie();
-
-	
-	// initializing swiper
-    // Swiper Slider
-    // var swiper = new Swiper('.swiper-container', {
-    //     pagination: '.swiper-pagination',
-    //     paginationClickable: true,
-    //     nextButton: '.swiper-button-next',
-    //     prevButton: '.swiper-button-prev',
-    //     loop: true
-    // });
-
-	// Select all links with hashes
-	$('a[href*="#"]')
-		// Remove links that don't actually link to anything
-		.not('[href="#"]')
-		.not('[href="#0"]')
-		.click(function(event) {
-		// On-page links
-		if (
-		  location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-		  && 
-		  location.hostname == this.hostname
-		) {
-		  // Figure out element to scroll to
-		  var target = $(this.hash);
-		  target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-		  // Does a scroll target exist?
-		  if (target.length) {
-		    // Only prevent default if animation is actually gonna happen
-		    event.preventDefault();
-		    $('html, body').animate({
-		      scrollTop: target.offset().top
-		    }, 600, function() {
-		      // Callback after animation
-		      // Must change focus!
-		      var $target = $(target);
-		      $target.focus();
-		      if ($target.is(":focus")) { // Checking if the target was focused
-		        return false;
-		      } else {
-		        $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-		        $target.focus(); // Set focus again
-		      };
-		    });
-		  }
-		}
-	});
+	// Removed commented-out Swiper initialization
 
 	// NASA Apod API
 	var url = "https://api.nasa.gov/planetary/apod?api_key=O5Jg72w3pMyqTYFR6RljtmxA3cIlFvRux44sm0vV";
 	var fallbackImageUrl = "image/heic0601a_compressed_shrunk.jpg";
 
-	$.ajax({
-	  url: url,
-	  success: handleResult
-	});
+	// Fetch NASA APOD data
+	fetch(url)
+	  .then(response => {
+	    if (!response.ok) {
+	      throw new Error(`HTTP error! status: ${response.status}`);
+	    }
+	    return response.json();
+	  })
+	  .then(handleResult)
+	  .catch(error => {
+	    console.error('Error fetching NASA APOD:', error);
+	    // Apply fallback on error
+	    handleResult({ media_type: 'error' }); // Pass a dummy object to trigger fallback
+	  });
 
 	function handleResult(result){
-		if(result.media_type == "video") {
+		const nasaBlock = document.querySelector('.block-nasa'); // Use vanilla JS selector
+		if (!nasaBlock) return; // Exit if element not found
 
-			// we want to insert a fallback image url when a video is detected
-			$('.block-nasa').css('background', 'url(' + fallbackImageUrl + ') 50% 50% no-repeat');
+		let backgroundUrl = fallbackImageUrl; // Default to fallback
 
-		} else {
-
-		    $('.block-nasa').css('background', 'url(' + result.url + ') 50% 50% no-repeat');
-		}	
+		if (result && result.media_type === "image" && result.url) {
+			backgroundUrl = result.url;
+		}
+		// Apply background (either image URL or fallback)
+		nasaBlock.style.background = `url('${backgroundUrl}') 50% 50% / cover no-repeat`; // Use cover for better fit
 	};
 
-	// //daily verse generator
+	// //daily verse generator (Original jQuery AJAX)
 	// var getVerse = function() {
 	//   $.ajax({
 	//     url: "https://labs.bible.org/api/?passage=votd&type=json&callback=dailyVerse", 
@@ -145,12 +57,67 @@ $(document).on('ready', function(){
 	// };
 	// getVerse();
 
-	$('#page-nav').viewportChecker();
-	$('.stat-bars').viewportChecker();
-	$('#stats').viewportChecker();
+	// --- Intersection Observer Setup for Animations ---
+
+	const animationObserverOptions = {
+	  root: null, // relative to document viewport
+	  rootMargin: '0px',
+	  threshold: 0.1 // Trigger when 10% of the element is visible
+	};
+
+	const animationCallback = (entries, observer) => {
+	  entries.forEach(entry => {
+	    if (entry.isIntersecting) {
+	      const target = entry.target;
+	      
+	      // Handle WOW animations (add animate__animated and specific animation class)
+	      if (target.classList.contains('wow')) {
+	        const animationDelay = target.dataset.wowDelay || '0s';
+	        target.style.visibility = 'visible'; // Make visible before animation
+	        target.style.animationDelay = animationDelay;
+	        // Determine animation class (e.g., animate__fadeInUp) - assumes it's already on the element or add logic here if needed
+	        target.classList.add('animate__animated'); 
+	        observer.unobserve(target); // Optional: Stop observing once animated
+	      }
+
+	      // Handle ViewportChecker replacements based on data attributes or IDs
+	      if (target.id === 'page-nav') {
+	        target.classList.add('stop-svg-animate');
+	        target.classList.remove('start-svg-animate');
+	        observer.unobserve(target); 
+	      } else if (target.id === 'stats') {
+	        // Add classes defined in original viewportChecker setup or HTML data attributes
+	        target.classList.remove('hidden-animation'); // Assuming this was initial state
+	        target.classList.add('animation-begin', 'visible-animation'); 
+	        // We might need to trigger the stat-bars animation from here too
+	        const statBars = document.querySelector('#animate-stats');
+	        if (statBars) {
+	          statBars.classList.add('is-playing');
+	          statBars.classList.remove('hidden-main-content'); // If it was hidden
+	        }
+	        observer.unobserve(target);
+	      }
+	      // Note: Direct handling for '.stat-bars' might be redundant if triggered by '#stats' intersection
+	      
+	    }
+	  });
+	};
+
+	const animationObserver = new IntersectionObserver(animationCallback, animationObserverOptions);
+
+	// Observe elements that need animation
+	document.querySelectorAll('.wow, #page-nav, #stats').forEach(el => {
+	  // Ensure 'wow' elements are initially hidden if using animate.css conventions
+	  if (el.classList.contains('wow')) {
+	    el.style.visibility = 'hidden'; 
+	  }
+	  animationObserver.observe(el);
+	});
+
+	// --- End Intersection Observer Setup ---
 
 
-	// Animating on scroll position
+	// Animating on scroll position (Old viewportChecker logic - replaced by IntersectionObserver)
 	// $('#page-nav').addClass('start-svg-animate').viewportChecker({
 	//        classToAdd: 'stop-svg-animate',
 	//        classToRemove: 'start-svg-animate',
@@ -169,271 +136,228 @@ $(document).on('ready', function(){
 	   //     offset: 400
 	   // });
 
-	// Delaying the stat bar animation - this works, but needs improvement		
-	function animateStats(){
+	// Removed animateStats function as IntersectionObserver handles this now.
+	// The logic for adding 'is-playing' to '.stat-bars' is included 
+	// within the IntersectionObserver callback when '#stats' becomes visible.
+	// CSS animations/transitions should handle the visual effect.
 
-		// $('.stat-bars').addClass('hidden-main-content').viewportChecker({
-	 //        classToAdd: 'is-playing',
-	 //        classToRemove: 'hidden-main-content',
-	 //        offset: 400
-	 //    });
-
-		// if class .stat-bars has class .hidden-main-content, do this
-		if (!$('.stat-bars').hasClass('hidden-main-content')){
-
-			// if screen comes into view do this
-			var statAnimate = setTimeout(function(){
-
-				// this sets the class to js-animate on scroll
-				// $('.stat-bars').viewportChecker({
-				// 	classToAdd: 'js-animate',
-				// 	offset: 400
-				// });
-				
-
-				$('.stat-bars').delay(1500).queue(function(next){
-					$(this).addClass('is-playing');
-					next();
-				});
-
-				// This runs if screen is in view
-
-				if ($('#animate-stats').hasClass('js-animate')){
-						
-					$('.stat-bars').delay(2000).queue(function(next){
-						$(this).removeClass('hidden-main-content');
-						next();
-					});
-
-					$('.stat-bars').delay(1500).queue(function(next){
-						$(this).addClass('is-playing');
-						next();
-					});
-				}
-
-			});
-
-		} 
-
-		// else {
-
-		// 		var statEngage = setTimeout(function(){
-
-		// 			// this sets the class to js-animate on scroll
-		// 			$('.stat-bars').viewportChecker({
-		// 				classToAdd: 'is-playing',
-		// 				offset: 400
-		// 			});
-
-		// 			// This runs if screen is in view
-
-		// 			// if (!$('.stat-bars').hasClass('is-playing')){
-							
-		// 			// 	$('.stat-bars').delay(100).queue(function(next){
-		// 			// 		$(this).addClass('is-playing');
-		// 			// 		next();
-		// 			// 	});
-		// 			// }
-
-		// 		});
-		// 	}
-	};
-
-	// Delaying the stat bar animation - this works, but needs improvement		
-	// function statsEngage(){
-
-	// 	// if class .stat-bars has class .hidden-main-content, do this
-	// 	if ($('.stat-bars').hasClass('engage')){
-						
-	// 		// if screen comes into view do this
-	// 		var statEngage = setTimeout(function(){
-
-	// 			// this sets the class to js-animate on scroll
-	// 			$('.stat-bars').viewportChecker({
-	// 				classToRemove: 'hidden-main-content',
-	// 				offset: 400
-	// 			});
-
-	// 			// This runs if screen is in view
-
-	// 			if (!$('.stat-bars').hasClass('is-playing')){
-						
-	// 				$('.stat-bars').delay(100).queue(function(next){
-	// 					$(this).addClass('is-playing');
-	// 					next();
-	// 				});
-	// 			}
-
-	// 		});
-	// 	}
-
-	// };
+	// $('#stats').addClass('hidden-animation'); // Initial state set via CSS or JS before observer
+	// $('.stat-bars').addClass('hidden-main-content'); // Initial state set via CSS or JS before observer
 
 
-	// statsEngage();
-	animateStats();
+	// Nav ScrollTo (Refactored to Vanilla JS)
 
-	// $('#stats').addClass('hidden-animation');
-	// $('.stat-bars').addClass('hidden-main-content');
+	const navWrapper = document.querySelector('.nav-wrapper');
+	const navHeight = navWrapper ? navWrapper.offsetHeight : 0; // Get height using offsetHeight
+
+	const navLinks = document.querySelectorAll('.nav-main a.js-internal, .page-nav-svg, .js-section-btn'); // Use querySelectorAll
+
+	// Add click listener to each nav link
+	navLinks.forEach(link => {
+	    link.addEventListener('click', function(e) {
+	        const whereToScroll = this.getAttribute('href'); // Get href attribute
+
+	        // Check if it's an internal link
+	        if (whereToScroll && whereToScroll.startsWith('#')) {
+	            // Smooth scrolling is handled by CSS 'scroll-behavior: smooth'
+	            // We only need to handle the 'is-current' class logic
+
+	            // Remove 'is-current' from all nav links
+	            navLinks.forEach(navLink => navLink.classList.remove('is-current'));
+
+	            // Add 'is-current' to the clicked link
+	            this.classList.add('is-current');
+
+	            // Special handling for #About link (refactored)
+	            if (whereToScroll === '#About') {
+	                const statsElement = document.getElementById('stats');
+	                const statBarsElement = document.querySelector('.stat-bars'); // Assuming only one
+	                if (statsElement) {
+	                    statsElement.classList.remove('hidden-animation');
+	                    statsElement.classList.add('animation-begin', 'visible-animation');
+	                }
+	                if (statBarsElement) {
+	                    statBarsElement.classList.remove('hidden-main-content');
+	                    statBarsElement.classList.add('is-playing');
+	                }
+	            }
+	            
+	            // Prevent default only for internal links to allow scrolling
+	            e.preventDefault(); 
+	        }
+	        // Let default behavior handle external links or links without href
+	    });
+	});
 
 
-	// Nav ScrollTo
+	// Scroll event listener for navigation style changes (Vanilla JS)
+	window.addEventListener('scroll', function() {
+	    const navScroll = window.scrollY;
+	    const scrollElement = document.querySelector('.js-scroll');
+	    const navResetElement = document.querySelector('.js-nav-reset');
 
-	var navHeight = $('.nav-wrapper').outerHeight(true);
-
-	var navClass = $('.nav-main a.js-internal, .page-nav-svg, .js-section-btn');
-
-	// Global scrollTo click event
-
-	navClass.on('click', function(e){
-		var whereToScroll = $(this).attr('href');
-
-		e.preventDefault();
-
-		navClass.removeClass('is-current');
-
-		$(this).addClass('is-current');		
-
-		// $.scrollTo(whereToScroll, {
-		// 	duration: 600,
-		// })
-
-		if ($(this) === '#About') {
-			$('#stats').removeClass('hidden-animation').addClass('animation-begin visible-animation');
-			$('.stat-bars').removeClass('hidden-main-content').addClass('is-playing');
-		};
-	})
-
-
-	$(window).scroll(function() {    
-
-	    var navScroll = $(window).scrollTop();
-
-	    if (navScroll >= 100) {
-	        $(".js-scroll").addClass('planet-nav');
-	        $('.js-nav-reset').css({
-	   			height: '0'
-	   		});
-	    } else {
-	    	$('.js-scroll').removeClass('planet-nav');
-	    	$('.js-nav-reset').css({
-	   			position: 'absolute',
-	   			height: 'auto',
-	   		});
+	    if (scrollElement) { // Check if element exists
+	        if (navScroll >= 100) {
+	            scrollElement.classList.add('planet-nav');
+	            if (navResetElement) { // Check if element exists
+	                navResetElement.style.height = '0';
+	                // Remove potentially conflicting position style if needed when scrolled down
+	                navResetElement.style.position = ''; 
+	            }
+	        } else {
+	            scrollElement.classList.remove('planet-nav');
+	            if (navResetElement) { // Check if element exists
+	                navResetElement.style.height = 'auto';
+	                navResetElement.style.position = 'absolute'; // Restore original position
+	            }
+	        }
 	    }
-
 	});
 
     
 
-    // Updating Footer Copyright Year
+    // Updating Footer Copyright Year (Vanilla JS)
     var updateYear = function(){
-    	
-    	$('.footerYear').html(new Date().getFullYear());
-	
-	};
-
+        const footerYearElement = document.querySelector('.footerYear'); // Use querySelector
+        if (footerYearElement) {
+            footerYearElement.textContent = new Date().getFullYear(); // Use textContent instead of .html()
+        }
+    };
 	updateYear();
 
-	//wow
-	wow = new WOW(
-		{
-			animateClass: 'animate__animated', // default
-		}
-	)
-	wow.init();
+	// Removed wow.init() - replaced by IntersectionObserver
+
+	// --- Modal Logic (Refactored to Vanilla JS + Bootstrap 5 API) ---
+	const experimentalModalElement = document.getElementById('experimentalModal');
+	let experimentalModalInstance = null; 
+	if (experimentalModalElement && typeof bootstrap !== 'undefined') { // Check if Bootstrap is loaded
+	    experimentalModalInstance = new bootstrap.Modal(experimentalModalElement);
+	}
 
 	function countDown() {
-		var timeleft = 4;var downloadTimer = "";
+		var timeleft = 4;
+		var downloadTimer = null; // Initialize to null
 		
 		function refreshTime() {
+			// Clear existing timer if any
+			if (downloadTimer) {
+				clearInterval(downloadTimer);
+			}
+			
 			downloadTimer = setInterval(function(){
-
 				if(timeleft <= 0){
 					clearInterval(downloadTimer);
-					$('#experimentalModal').toggle();
+					downloadTimer = null; // Reset timer variable
+					if (experimentalModalInstance) {
+						experimentalModalInstance.toggle(); // Use Bootstrap API
+					}
 					Cookies.set('modal', 'viewed', {expires: 1});
-
-					//document.getElementById("countdown").innerHTML = "0";
 				} else {
-					//
+					// Optional: Update countdown display if needed
 				}
 				timeleft -= 1;
 			}, 1000);
 		}
 
-		$('#experimentalModal').addEventListener('show.bs.modal', function () {
-			refreshTime();
-		});
+		if (experimentalModalElement) {
+			experimentalModalElement.addEventListener('show.bs.modal', function () {
+				refreshTime();
+			});
 
-
-		$('#experimentalModal').addEventListener('hide.bs.modal', function (e) {
-			 //alert('I should stop now');
-			 //return;
-			 clearInterval(downloadTimer);
-			 Cookies.set('modal', 'viewed', {expires: 1});
-		});
+			experimentalModalElement.addEventListener('hide.bs.modal', function (e) {
+				 if (downloadTimer) {
+				 	clearInterval(downloadTimer);
+				 	downloadTimer = null; // Reset timer variable
+				 }
+				 Cookies.set('modal', 'viewed', {expires: 1});
+			});
+		}
 	};
-	countDown();
+	
+	// Only run countdown if the modal exists
+	if (experimentalModalElement) {
+		countDown();
+	}
 
 
-	console.log('modal ready??');
+	console.log('modal ready??'); // Keep console logs for debugging if desired
 
-	var changeObject = document.getElementById('main-content-wrapper');
-	var observer = new MutationObserver(function (event) {
-		if (!Cookies.get('modal')) {
-			console.log('modal entry??');
-			setTimeout(function() {
-				$('#experimentalModal').toggle();
-			}, 1200);
-		};
-		console.log('class that changed ' + changeObject.className);  
-	})
+	const mainContentWrapper = document.getElementById('main-content-wrapper');
+	if (mainContentWrapper) { // Check if element exists
+		const observer = new MutationObserver(function (mutationsList, observer) {
+			// We only care about class changes on the main wrapper
+			for(const mutation of mutationsList) {
+		        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+					// Check cookie and toggle modal if needed
+					if (!Cookies.get('modal')) {
+						console.log('modal entry via mutation observer??');
+						setTimeout(function() {
+							if (experimentalModalInstance) {
+								experimentalModalInstance.toggle(); // Use Bootstrap API
+							}
+						}, 1200);
+					}
+					console.log('class that changed ' + mainContentWrapper.className); 
+					// Potentially disconnect observer if only needed once, or add more logic
+					// observer.disconnect(); 
+					break; // Stop checking other mutations once class change is handled
+		        }
+		    }
+		});
 
-	observer.observe(changeObject, {
-		attributes: true, 
-		attributeFilter: ['class'],
-		childList: false, 
-		characterData: false
-	})
+		observer.observe(mainContentWrapper, {
+			attributes: true, 
+			attributeFilter: ['class'],
+			childList: false, 
+			characterData: false
+		});
+	}
 
-	// $("#classchange-btn").on("classChanged", function () { 
-	// 	countDown();
-	// }); 
+	// Removed duplicate observer.observe call that was causing an error
 
+	// Removed commented-out jQuery modal logic
 
-	// if (!Cookies.get('modal')){
-	// 	$('#experimentalModal').modal('show');
-	// 		//bs modal
-	// 	setTimeout(function(){
-	// 		$('#experimentalModal').modal('hide');
-	// 		Cookies.set('modal', 'viewed', {expires: 1});
-	// 	}, 4000);
-	// };
+// --- End Modal Logic ---
 
-}); // end doc on ready
-
+// IIFE for Bible Verse - can run once DOM is ready
 (function() {
-  $(document ).ready(function() {
-      getVerse();
-  });
+  // No need for $(document).ready here as the outer listener handles it.
+  getVerse();
 
   var getVerse = function() {
-      $.ajax({
-        url: "https://labs.bible.org/api/?passage=votd&type=json&callback=randomVerse", 
-        crossDomain: true,
-        dataType: 'jsonp',
-        success: function(result){
-           $("#verseQuote")
-            .html(
-              '<p class="panel-heading text-muted">'+result[0].text+'</p>'+
-              '<strong class="badge">'+
-              result[0].bookname+
-              ' ' + result[0].chapter +
-              ':' + result[0].verse +
-              '</strong> ' 
-            );
-        }
-      });
+      // Attempt fetch for Bible Verse API (assuming CORS is enabled)
+      // Note: Original used JSONP. Fetch requires CORS.
+      const verseUrl = "https://labs.bible.org/api/?passage=votd&type=json"; // Removed callback param
+
+      fetch(verseUrl)
+        .then(response => {
+          if (!response.ok) {
+            // If CORS fails or other error, might need to revert to JSONP or find alternative
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(result => {
+          const verseQuoteElement = document.getElementById("verseQuote"); // Use vanilla JS selector
+          if (verseQuoteElement && result && result[0]) {
+            verseQuoteElement.innerHTML = `
+              <p class="panel-heading text-muted">${result[0].text}</p>
+              <strong class="badge">
+                ${result[0].bookname} ${result[0].chapter}:${result[0].verse}
+              </strong>`;
+          } else if (verseQuoteElement) {
+            verseQuoteElement.textContent = 'Could not load verse.';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching Bible verse:', error);
+          const verseQuoteElement = document.getElementById("verseQuote");
+          if (verseQuoteElement) {
+            verseQuoteElement.textContent = 'Could not load verse.';
+          }
+          // Consider adding fallback or alternative logic here if fetch consistently fails
+        });
   }
 })();
+
+}); // End DOMContentLoaded listener
