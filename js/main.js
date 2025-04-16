@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	            }
 	            
 	            // Prevent default only for internal links to allow scrolling
-	            e.preventDefault(); 
+	            // e.preventDefault(); // Removed to allow CSS smooth scroll
 	        }
 	        // Let default behavior handle external links or links without href
 	    });
