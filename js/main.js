@@ -319,45 +319,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // --- End Modal Logic ---
 
+// Define getVerse function globally
+var getVerse = function() {
+    const verseUrl = "https://labs.bible.org/api/?passage=votd&type=json"; // Removed callback param
+
+    fetch(verseUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(result => {
+        const verseQuoteElement = document.getElementById("verseQuote"); // Use vanilla JS selector
+        if (verseQuoteElement && result && result[0]) {
+          verseQuoteElement.innerHTML = `
+            <p class="panel-heading text-muted">${result[0].text}</p>
+            <strong class="badge">
+              ${result[0].bookname} ${result[0].chapter}:${result[0].verse}
+            </strong>`;
+        } else if (verseQuoteElement) {
+          verseQuoteElement.textContent = 'Could not load verse.';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching Bible verse:', error);
+        const verseQuoteElement = document.getElementById("verseQuote");
+        if (verseQuoteElement) {
+          verseQuoteElement.textContent = 'Could not load verse.';
+        }
+      });
+};
+
 // IIFE for Bible Verse - can run once DOM is ready
 (function() {
-  // No need for $(document).ready here as the outer listener handles it.
+  // Call getVerse function
   getVerse();
-
-  var getVerse = function() {
-      // Attempt fetch for Bible Verse API (assuming CORS is enabled)
-      // Note: Original used JSONP. Fetch requires CORS.
-      const verseUrl = "https://labs.bible.org/api/?passage=votd&type=json"; // Removed callback param
-
-      fetch(verseUrl)
-        .then(response => {
-          if (!response.ok) {
-            // If CORS fails or other error, might need to revert to JSONP or find alternative
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(result => {
-          const verseQuoteElement = document.getElementById("verseQuote"); // Use vanilla JS selector
-          if (verseQuoteElement && result && result[0]) {
-            verseQuoteElement.innerHTML = `
-              <p class="panel-heading text-muted">${result[0].text}</p>
-              <strong class="badge">
-                ${result[0].bookname} ${result[0].chapter}:${result[0].verse}
-              </strong>`;
-          } else if (verseQuoteElement) {
-            verseQuoteElement.textContent = 'Could not load verse.';
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching Bible verse:', error);
-          const verseQuoteElement = document.getElementById("verseQuote");
-          if (verseQuoteElement) {
-            verseQuoteElement.textContent = 'Could not load verse.';
-          }
-          // Consider adding fallback or alternative logic here if fetch consistently fails
-        });
-  }
 })();
 
 }); // End DOMContentLoaded listener
