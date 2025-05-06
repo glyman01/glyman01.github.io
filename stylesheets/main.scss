@@ -115,7 +115,7 @@ html>body .content {
     @extend .sub-head;
     font-size: 86px;
     font-weight: bold;
-    line-height: .8em;
+    line-height: 1em;
     letter-spacing: 0;
 
 
@@ -371,6 +371,20 @@ html>body .content {
         background-color: rgba($lte-gry, 0.25);
         width: 76%;
         @include animation(statsSlide76 3s cubic-bezier(0.5, 0.03, 0.3, 1));
+    }
+
+    .stat-bar-mini-80 {
+      @extend .stat-bar-mini-jquery;
+      background-color: rgba($lte-gry, 0.25);
+      width: 80%;
+      @include animation(statsSlide80 3s cubic-bezier(0.5, 0.03, 0.3, 1));
+    }
+
+    .stat-bar-mini-85 {
+      @extend .stat-bar-mini-jquery;
+      background-color: rgba($lte-gry, 0.25);
+      width: 85%;
+      @include animation(statsSlide85 3s cubic-bezier(0.5, 0.03, 0.3, 1));
     }
 
     .stat-bar-mini-sass {
@@ -662,7 +676,7 @@ html>body .content {
     font-weight: 700;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 .swiper-container {
@@ -872,4 +886,39 @@ footer {
   // display: none;
   overflow: hidden;
   visibility: hidden;
+}
+
+.carousel-content {
+  position: relative;
+  text-align: center;
+}
+
+.view-link-btn {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 10px 30px;
+  background-color: #00000042;
+  color: #f0f0f0;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px; // Pill shape
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  .fa {
+    display: inline;
+    padding: 0;
+    padding-left: 8px;
+  }
+
+  &:hover {
+    background-color: darken($cyan, 10%);
+  }
+
+  &:focus {
+    outline: 2px solid darken($cyan, 20%);
+  }
 }

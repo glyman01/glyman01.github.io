@@ -24,7 +24,7 @@
 	}
 
 	&:focus{
-		@extend .section-btn:hover;
+		@extend .section-btn, :hover;
 		color: $lte-gry;
 		outline: dotted rgba($sweet-red, 0.8);
     	outline-offset: 14px;
@@ -42,7 +42,7 @@
 	}
 
 	&:focus{
-		@extend .section-btn-green:hover;
+		@extend .section-btn-green, :hover;
 		color: white;
 		outline: dotted rgba($sweet-red, 0.8);
     	outline-offset: 14px;
