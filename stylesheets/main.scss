@@ -3,15 +3,14 @@
 @import 'partials/mixins';
 @import 'bourbon/bourbon';
 @import 'partials/typography';
-@import 'font-awesome/font-awesome';
-@import 'partials/colors';
-@import 'partials/buttons';
-@import 'partials/nav';
-@import 'partials/grid';
-@import 'partials/blocks';
-@import 'partials/borders';
-@import 'partials/svg';
-@import 'partials/animations';
+
+// Add the active class for mobile navigation
+.active {
+    display: block; // or flex, depending on your layout
+    // Add any additional styles needed for the active state
+}
+
+// Existing styles...
 @import 'partials/swiper';
 
 

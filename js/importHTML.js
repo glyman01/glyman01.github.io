@@ -20,6 +20,10 @@ function includeHTML() {
           
         }
       }      
+      // Adjust for local file paths
+      if (file.startsWith('/')) {
+          file = '.' + file; // Convert to relative path
+      }
       xhttp.open("GET", file, true);
       xhttp.send();
       /*exit the function:*/

@@ -4557,7 +4557,7 @@ html > body .content {
 #intro .big-hero-txt {
   font-size: 86px;
   font-weight: bold;
-  line-height: 0.8em;
+  line-height: 1em;
   letter-spacing: 0;
 }
 @media all and (min-width: 480px) {

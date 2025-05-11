@@ -13,6 +13,10 @@ class HTMLInclude extends HTMLElement {
         if (!src) {
             throw new Error("URL missing between <html-import> tags.");
         } 
+        // Adjust for local file paths
+        if (src.startsWith('/')) {
+            src = '.' + src; // Convert to relative path
+        }
         let rsp = await fetch(src);
 
         if (rsp.status != 200) {
@@ -31,4 +35,3 @@ class HTMLInclude extends HTMLElement {
     }
 }
 customElements.define("html-include", HTMLInclude);
-

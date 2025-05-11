@@ -1,9 +1,36 @@
-<nav class="bg-white shadow-md">
-	<ul class="flex space-x-4 p-4">
-		<li><a class="text-gray-800 hover:text-orange-500" href="/#About">About</a></li>
-		<li><a class="text-gray-800 hover:text-orange-500" href="/media/Geoffrey%20T%20Lyman%20Resume%202021.pdf" download target="_blank">Resume</a></li>
-		<li>
-			<a class="text-gray-800 hover:text-orange-500" href="/#intro">
+<nav class="nav-wrapper js-nav-reset">
+    <div class="logo-container">
+        <a href="/"><svg id="Planet-White" class="planet-white" data-name="Planet-White" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 158"><title>White_Nav_Planet</title>
+            <path class="planet-inner-circle-nav" d="M102,8.5A70.5,70.5,0,1,0,172.5,79,70.58,70.58,0,0,0,102,8.5Z"/>
+            <path class="planet-outer-circle-nav" d="M102,2.25A76.6,76.6,0,0,0,62,13.5,77.37,77.37,0,0,0,55.4,18a76.31,76.31,0,0,0-29.3,49.6A77.53,77.53,0,0,0,25.33,76c0,0.93-.08,2-0.08,3a76.74,76.74,0,0,0,153.23,6.22c0.18-2.28.27-4.31,0.27-6.22A76.84,76.84,0,0,0,102,2.25ZM172.5,79l-0.25.09a70.7,70.7,0,0,1-42.86,64.6A70.29,70.29,0,0,1,31.84,82.4c-0.06-1.22-.09-2.33-0.09-3.4,0-1.56.07-3.2,0.21-5.16A69.81,69.81,0,0,1,63.33,20.39a70.56,70.56,0,0,1,7-4.09A69.36,69.36,0,0,1,102,8.75,70.33,70.33,0,0,1,172.25,79h0.25Z" style="fill: rgba(255, 255, 255, 0.9); stroke-width: .75px; stroke: rgba(255, 255, 255, 0.9)"/>
+            <path class="planet-ring-nav" d="M198.54,114.72c-3.5-9.4-10.4-20.08-20-30.92l-0.4-.45c-1.84-2.07-3.76-4.14-5.72-6.15l-0.27-.27-4-4.07a233.37,233.37,0,0,0-94.5-58l-0.22-.07-3-1c-2-.64-4-1.24-6-1.8l-2.08-.58A112.37,112.37,0,0,0,33.88,7.25h0c-13.78,0-23.5,3.94-28.11,11.4C-1.9,31.06,5.28,51.28,25.44,74.17c0.14-2.23.34-4.43,0.65-6.54,0.11-.77.26-1.53,0.4-2.29-1.57-1.93-3-3.71-4.19-5.4-11.86-16.2-15.88-30-11-37.84,2.34-3.79,8.17-8.32,22.61-8.32a99.31,99.31,0,0,1,21.8,2.73L57,16.83c2,0.48,4.12,1,6.28,1.63l1.18,0.34,1,0.29A231.12,231.12,0,0,1,167.64,81.52c1.51,1.59,2.85,3,4,4.23l0.27,0.3c1.79,2,3.39,3.8,4.88,5.6l0.76,0.94c1.52,1.87,3,3.71,4.24,5.47,11.86,16.2,15.88,30,11,37.84-2.34,3.8-8.17,8.32-22.6,8.32A101.19,101.19,0,0,1,147,141.15c-0.64.47-1.28,0.94-1.93,1.39-1.74,1.18-3.57,2.31-5.47,3.38,11.38,3.2,21.67,4.84,30.6,4.84,13.78,0,23.5-3.94,28.11-11.4C202.14,133.13,202.22,124.61,198.54,114.72Z" style="fill:rgba(255, 255, 255, 0.7)"/>
+            </svg>
+        </a>
+    </div>
+    <button class="hamburger" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <ul class="nav-main">
+        <li class="top-nav"><a class="sliding-middle-out js-internal" href="/#About">About</a></li>
+        <li class="top-nav"><a class="sliding-middle-out" href="/media/Geoffrey_T_Lyman-Resume-2025-Web.pdf" download="/media/Geoffrey_T_Lyman-Resume-2025-Web.pdf" target="_blank">Resume</a></li>
+        <li class="top-nav"><a class="sliding-middle-out js-internal" href="/#Work">Work</a></li>
+        <li class="top-nav"><a class="sliding-middle-out" href="/contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav">
+        <ul class="nav-main">
+            <li class="top-nav"><a href="#About">About</a></li>
+            <li class="top-nav"><a href="#Work">Work</a></li>
+            <li class="top-nav"><a href="#Contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- <nav class="mobile-nav nav-wrapper js-nav-reset">
+	<ul class="nav-main">
+		<li class="top-nav"><a href="#About">About</a></li>
+		<li class="js-scroll">
+			<a class="js-internal" href="#intro">
 				<svg id="Planet-White" class="planet-white" data-name="Planet-White" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 158"><title>White_Nav_Planet</title>
 				<path class="planet-inner-circle-nav" d="M102,8.5A70.5,70.5,0,1,0,172.5,79,70.58,70.58,0,0,0,102,8.5Z"/>
 				<path class="planet-outer-circle-nav" d="M102,2.25A76.6,76.6,0,0,0,62,13.5,77.37,77.37,0,0,0,55.4,18a76.31,76.31,0,0,0-29.3,49.6A77.53,77.53,0,0,0,25.33,76c0,0.93-.08,2-0.08,3a76.74,76.74,0,0,0,153.23,6.22c0.18-2.28.27-4.31,0.27-6.22A76.84,76.84,0,0,0,102,2.25ZM172.5,79l-0.25.09a70.7,70.7,0,0,1-42.86,64.6A70.29,70.29,0,0,1,31.84,82.4c-0.06-1.22-.09-2.33-0.09-3.4,0-1.56.07-3.2,0.21-5.16A69.81,69.81,0,0,1,63.33,20.39a70.56,70.56,0,0,1,7-4.09A69.36,69.36,0,0,1,102,8.75,70.33,70.33,0,0,1,172.25,79h0.25Z" style="fill: rgba(255, 255, 255, 0.9); stroke-width: .75px; stroke: rgba(255, 255, 255, 0.9)"/>
@@ -11,7 +38,6 @@
 				</svg>
 			</a>
 		</li>				
-		<li class="top-nav hidden-xs"><a class="sliding-middle-out js-internal" href="/#Work">Work</a></li>
-		<li class="top-nav"><a class="sliding-middle-out" href="/contact">Contact</a></li>
+		<li class="top-nav"><a href="#Work">Work</a></li>
 	</ul>
-</nav>
+</nav> -->
